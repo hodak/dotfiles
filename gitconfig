@@ -47,3 +47,5 @@
 	all = true
 [git-up "rebase"]
 	arguments = --preserve-merges
+[push]
+	default = simple
