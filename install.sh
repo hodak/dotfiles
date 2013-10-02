@@ -24,3 +24,9 @@ ln -sf ~/dotfiles/vim ~/.vim
 echo "+ ssh"
 rm -rfi ~/.ssh
 ln -sf ~/dotfiles/ssh ~/.ssh
+
+echo "+ sublime settings from dropbox"
+rm -rfi ~/Library/Application\ Support/Sublime\ Text\ 2/Installed\ Packages \
+  ~/Library/Application\ Support/Sublime\ Text\ 2/Pristine\ Packages \
+  ~/Library/Application\ Support/Sublime\ Text\ 2/Packages
+ln -sf ~/Dropbox/private/Sublime\ Text\ 2/* ~/Library/Application\ Support/Sublime\ Text\ 2/
