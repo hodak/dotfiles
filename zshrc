@@ -47,7 +47,10 @@ function fm {
   fi
 }
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/opt/X11/bin"
+# == boxen ==
 [ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh
+# == rbenv ==
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 export JAVA_OPTS="-Xms256m -Xmx512m -Dfile.encoding=UTF-8 -noverify"
 
@@ -60,10 +63,6 @@ alias rt="touch tmp/restart.txt"
 alias grep="grep --color"
 alias jsonp="ruby -r json -e 'puts JSON.pretty_generate(JSON.parse(readlines.join))'"
 alias g="git"
-
-# == rbenv ==
-export RBENV_ROOT=~/.rbenv
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # == browser ==
 if [[ "$OSTYPE" == darwin* ]]; then
@@ -79,8 +78,6 @@ export PAGER='less'
 if [[ -z "$LANG" ]]; then
   export LANG='en_US.UTF-8'
 fi
-
-
 
 # == less ==
 # Set the default Less options.
