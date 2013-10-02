@@ -1,2 +1,4 @@
 .DS_Store
 .netrwhist
+ssh/id_rsa*
+ssh/known_hosts

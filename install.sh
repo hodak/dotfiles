@@ -20,3 +20,7 @@ sed -i -e "s/GITHUB_TOKEN/$token/g" ~/.gitconfig
 echo "+ vim"
 ln -sf ~/dotfiles/vimrc ~/.vimrc
 ln -sf ~/dotfiles/vim ~/.vim
+
+echo "+ ssh"
+rm -rfi ~/.ssh
+ln -sf ~/dotfiles/ssh ~/.ssh

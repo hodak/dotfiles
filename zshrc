@@ -149,3 +149,7 @@ fi
 
 source ~/dotfiles/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/dotfiles/zsh-history-substring-search/zsh-history-substring-search.zsh
+
+# == ssh-keys ==
+ssh-add ~/Dropbox/private/ssh-keys/id_rsa 2> /dev/null
+ssh-add ~/Dropbox/private/ssh-keys/id_rsa_monterail 2> /dev/null
