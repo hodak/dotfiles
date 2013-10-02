@@ -47,13 +47,12 @@ function fm {
   fi
 }
 
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/texbin"
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin"
 export PATH="$PATH:/usr/local/sbin"
 
-export EDITOR="subl -w"
 export JAVA_OPTS="-Xms256m -Xmx512m -Dfile.encoding=UTF-8 -noverify"
-export LC_CTYPE="en_US.UTF-8"
 
+# == aliases ==
 alias s="subl ."
 alias ls="ls -GF"
 alias l="ls -GFalh"
@@ -61,33 +60,36 @@ alias dt="tail -F -n 0 log/development.log"
 alias rt="touch tmp/restart.txt"
 alias grep="grep --color"
 alias jsonp="ruby -r json -e 'puts JSON.pretty_generate(JSON.parse(readlines.join))'"
+alias g="git"
+
+# == rbenv ==
+export RBENV_ROOT=~/.rbenv
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+# == browser ==
+if [[ "$OSTYPE" == darwin* ]]; then
+  export BROWSER='open'
+fi
+
+# == editors ==
+export EDITOR='subl'
+export VISUAL='subl'
+export PAGER='less'
+
+# == language ==
+if [[ -z "$LANG" ]]; then
+  export LANG='en_US.UTF-8'
+fi
 
 
-# rbenv
-export PATH="~/.rbenv/shims:${PATH}"
-source "/usr/local/Cellar/rbenv/0.4.0/libexec/../completions/rbenv.zsh"
-# rbenv rehash 2>/dev/null
-rbenv() {
-  command="$1"
-  if [ "$#" -gt 0 ]; then
-    shift
-  fi
 
-  case "$command" in
-  shell)
-    eval `rbenv "sh-$command" "$@"`;;
-  *)
-    command rbenv "$command" "$@";;
-  esac
-}
-
-export RBXOPT=-X19
-export RBX_ROOT=$HOME/.rbenv/versions/rbx-2.0.0-dev
-
-
+# == less ==
+# Set the default Less options.
+# Mouse-wheel scrolling has been disabled by -X (disable screen clearing).
+# Remove -X and -F (exit if the content fits on one screen) to enable it.
+export LESS='-F -g -i -M -R -S -w -X -z-4'
 
 # == prompt ==
-
 setopt prompt_subst
 autoload -U colors zsh/terminfo compinit promptinit
 colors
