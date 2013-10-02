@@ -46,9 +46,8 @@ function fm {
     foreman start
   fi
 }
-
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin"
-export PATH="$PATH:/usr/local/sbin"
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/opt/X11/bin"
+[ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh
 
 export JAVA_OPTS="-Xms256m -Xmx512m -Dfile.encoding=UTF-8 -noverify"
 
