@@ -13,6 +13,7 @@ echo "+ git"
 printf "Github token: "
 read token
 ln -sf ~/dotfiles/gitconfig ~/.gitconfig
+ln -sf ~/dotfiles/gitignore-global ~/.gitignore-global
 sed -i -e "s/GITHUB_TOKEN/$token/g" ~/.gitconfig
 
 # from yoursachet.com

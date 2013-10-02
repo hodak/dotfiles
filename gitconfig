@@ -38,7 +38,7 @@
   last = log -1 HEAD
 
 [core]
-  excludesfile = ~/.gitignore_global
+  excludesfile = ~/.gitignore-global
 	editor = vim
 
 [git-up "bundler"]
