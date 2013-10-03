@@ -1,3 +1,6 @@
+echo "+ submodules"
+git submodule update --init
+
 echo "+ zsh"
 rm -rf ~/.zshrc
 ln -sf ~/dotfiles/zshrc ~/.zshrc
@@ -29,6 +32,8 @@ ln -sf ~/dotfiles/vim ~/.vim
 echo "+ ssh"
 rm -rf ~/.ssh
 ln -sf ~/dotfiles/ssh ~/.ssh
+# fix ssh-keys permission
+chmod 600 ~/Dropbox/private/ssh-keys/*
 
 echo "+ sublime settings from dropbox"
 rm -rf ~/Library/Application\ Support/Sublime\ Text\ 2/Installed\ Packages \
