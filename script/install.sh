@@ -38,7 +38,8 @@ ln -sf ~/dotfiles/ssh ~/.ssh
 chmod 600 ~/Dropbox/private/ssh-keys/*
 
 echo "+ sublime settings from dropbox"
-rm -rf ~/Library/Application\ Support/Sublime\ Text\ 2/Installed\ Packages \
-  ~/Library/Application\ Support/Sublime\ Text\ 2/Pristine\ Packages \
-  ~/Library/Application\ Support/Sublime\ Text\ 2/Packages
-ln -sf ~/Dropbox/private/Sublime\ Text\ 2/* ~/Library/Application\ Support/Sublime\ Text\ 2/
+sublime_support_dir=~/Library/Application\ Support/Sublime\ Text\ 2
+rm -rf "${sublime_support_dir}/Installed Packages" "${sublime_support_dir}/Pristine Packages" "${sublime_support_dir}/Packages"
+ln -sf "~/Dropbox/private/Sublime Text 2/Installed Packages" "${sublime_support_dir}/"
+ln -sf "~/Dropbox/private/Sublime Text 2/Pristine Packages" "${sublime_support_dir}/"
+ln -sf "~/Dropbox/private/Sublime Text 2/Packages" "${sublime_support_dir}/"
