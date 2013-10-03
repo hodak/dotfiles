@@ -70,8 +70,8 @@ if [[ "$OSTYPE" == darwin* ]]; then
 fi
 
 # == editors ==
-export EDITOR='subl'
-export VISUAL='subl'
+export EDITOR='subl -w'
+export VISUAL='subl -w'
 export PAGER='less'
 
 # == language ==
