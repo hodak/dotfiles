@@ -1,5 +1,7 @@
+#/bin/bash
+
 echo "+ submodules"
-git submodule update --init
+cd ~/dotfiles; git pull origin master; git submodule update --init
 
 echo "+ zsh"
 rm -rf ~/.zshrc
@@ -19,9 +21,9 @@ echo "+ git"
 rm -rf ~/.gitconfig ~/.gitignore-global
 ln -sf ~/dotfiles/gitconfig ~/.gitconfig
 ln -sf ~/dotfiles/gitignore-global ~/.gitignore-global
-printf "Github token: "
-read token
-sed -i -e "s/GITHUB_TOKEN/$token/g" ~/.gitconfig
+# printf "Github token: "
+# read token
+# sed -i -e "s/GITHUB_TOKEN/$token/g" ~/.gitconfig
 
 # from yoursachet.com
 echo "+ vim"
