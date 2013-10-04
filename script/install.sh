@@ -38,8 +38,10 @@ ln -sf ~/dotfiles/ssh ~/.ssh
 chmod 600 ~/Dropbox/private/ssh-keys/*
 
 echo "+ sublime settings from dropbox"
-sublime_support_dir=~/Library/Application\ Support/Sublime\ Text\ 2
-rm -rf "${sublime_support_dir}/Installed Packages" "${sublime_support_dir}/Pristine Packages" "${sublime_support_dir}/Packages"
-ln -sf "~/Dropbox/private/Sublime Text 2/Installed Packages" "${sublime_support_dir}/"
-ln -sf "~/Dropbox/private/Sublime Text 2/Pristine Packages" "${sublime_support_dir}/"
-ln -sf "~/Dropbox/private/Sublime Text 2/Packages" "${sublime_support_dir}/"
+mkdir -p ~/Library/Application\ Support/Sublime\ Text\ 2/Installed\ Packages
+mkdir -p ~/Library/Application\ Support/Sublime\ Text\ 2/Packages
+# install package control
+curl https://sublime.wbond.net/Package%20Control.sublime-package > ~/Library/Application\ Support/Sublime\ Text\ 2/Installed\ Packages/Package\ Control.sublime-package
+# symlink config for dropbox
+rm -rf ~/Library/Application\ Support/Sublime\ Text\ 2/Packages/User
+ln -sf ~/Dropbox/private/Sublime/User ~/Library/Application\ Support/Sublime\ Text\ 2/Packages/
