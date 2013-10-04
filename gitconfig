@@ -42,10 +42,10 @@
   editor = vim
 
 [git-up "bundler"]
-	check = true
+  check = true
 [git-up "fetch"]
-	all = true
+  all = true
 [git-up "rebase"]
-	arguments = --preserve-merges
+  arguments = --preserve-merges
 [push]
-	default = simple
+  default = simple
