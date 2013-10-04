@@ -38,6 +38,7 @@ ln -sf ~/dotfiles/ssh ~/.ssh
 chmod 600 ~/Dropbox/private/ssh-keys/*
 
 echo "+ sublime settings from dropbox"
+rm -rf ~/Library/Application\ Support/Sublime\ Text\ 2
 mkdir -p ~/Library/Application\ Support/Sublime\ Text\ 2/Installed\ Packages
 mkdir -p ~/Library/Application\ Support/Sublime\ Text\ 2/Packages
 # install package control
