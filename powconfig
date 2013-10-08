@@ -1,4 +1,4 @@
-export PATH="~/.rbenv/shims:$PATH"
+source /opt/boxen/env.sh
 export POW_TIMEOUT=900
 export POW_WORKERS=2
 export POW_DOMAINS=dev,test,local
