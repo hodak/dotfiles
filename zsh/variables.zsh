@@ -24,6 +24,9 @@ export PAGER='less'
 # == java home ==
 export JAVA_HOME=$(/usr/libexec/java_home)
 
+# == library path ==
+export LD_LIBRARY_PATH=/opt/boxen/homebrew/lib
+
 # == less ==
 # Set the default Less options.
 # Mouse-wheel scrolling has been disabled by -X (disable screen clearing).
