@@ -21,6 +21,9 @@ export EDITOR='subl -w'
 export VISUAL='subl -w'
 export PAGER='less'
 
+# == java home ==
+export JAVA_HOME=$(/usr/libexec/java_home)
+
 # == less ==
 # Set the default Less options.
 # Mouse-wheel scrolling has been disabled by -X (disable screen clearing).
