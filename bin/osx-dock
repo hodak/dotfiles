@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+set -e
+
+echo "Put Dock on the left"
+defaults write com.apple.dock orientation -string left
+
+echo "Autohide Dock"
+defaults write com.apple.dock autohide -boolean true
+
+clear_dock() {
+  defaults write com.apple.dock persistent-apps -array ''
+}
+
+permament_dock() {
+  defaults write com.apple.dock persistent-apps -array-add "<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>$1</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>"
+}
+
+clear_dock
+permament_dock "/Applications/App Store.app"
+permament_dock "/Applications/Google Chrome.app"
+permament_dock "/Applications/iTerm.app"
+
+echo "Restarting Dock"
+killall Dock
