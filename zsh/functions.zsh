@@ -21,3 +21,32 @@ function fm {
     foreman start
   fi
 }
+
+# project momterail/mm4-launchpad mm4/launchpad
+# project mm4/launchpad
+
+function project {
+: ${1?"Usage: project project_dir"}
+  project_dir="${@: -1}"
+  project_name=$1
+  project_path=~/src/$project_dir
+  echo $project_path
+  if [ ! -d $project_path ]; then
+    echo "~ Git clone..."
+    git clone "git@github.com:$project_name.git" $project_path
+  fi
+
+  if [ -d $project_path ]; then
+    cd $project_path
+    if [ -d .git ]; then
+      echo "~ Git pull.."
+      git pull
+    fi
+    if [ -f Gemfile ]; then
+      echo "~ Bundle install..."
+      bundle install
+    fi
+  else
+    echo "~ Can't find project: $project_name"
+  fi
+}
