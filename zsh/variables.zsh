@@ -1,9 +1,6 @@
 # == PATH ==
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/opt/X11/bin"
 
-# == boxen ==
-[ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh
-
 # == rbenv ==
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
@@ -23,9 +20,6 @@ export PAGER='less'
 
 # == java home ==
 export JAVA_HOME=$(/usr/libexec/java_home)
-
-# == library path ==
-export LD_LIBRARY_PATH=/opt/boxen/homebrew/lib
 
 # == less ==
 # Set the default Less options.
