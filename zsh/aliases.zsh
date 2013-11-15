@@ -1,4 +1,5 @@
 # == aliases ==
+alias subl="/Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl"
 alias s="subl ."
 alias ls="ls -GF"
 alias l="ls -GFalh"
