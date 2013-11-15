@@ -3,41 +3,32 @@
 echo "+ submodules"
 cd ~/dotfiles; git pull origin master; git submodule update --init
 
-echo "+ zsh"
-rm -rf ~/.zshrc
-ln -sf ~/dotfiles/zshrc ~/.zshrc
+function symlink-dotfiles() {
+  local backup_dir="dotfiles-$(date +'%Y-%m-%d-%H%M%S').bak"
+  mkdir -p ~/$backup_dir
+  for file; do
+    if [[ -e ~/.$file ]]; then
+      mv ~/.$file ~/$backup_dir/
+    fi
+    ln -sf ~/dotfiles/$file ~/.$file
+  done
+}
 
-echo "+ ruby"
-rm -rf ~/.gemrc ~/.irbrc ~/.powconfig
-ln -sf ~/dotfiles/gemrc ~/.gemrc
-ln -sf ~/dotfiles/irbrc ~/.irbrc
-ln -sf ~/dotfiles/powconfig ~/.powconfig
+echo "+ backup current dotfiles"
+echo "+ symlink new dotfiles"
+symlink-dotfiles zshrc gemrc irbrc powconfig tmux.conf gitconfig gitignore-global vim vimrc ssh
 
-echo "+ tmux"
-rm -rf ~/.tmux.conf
-ln -sf ~/dotfiles/tmux.conf ~/.tmux.conf
+echo "+ symlink Documents from Dropbox"
+if [[ ! -h ~/Documents ]]; then
+  backup_dir="Documents-$(date +'%Y-%m-%d-%H%M%S').bak"
+  mv ~/Documents ~/$backup_dir
+  ln -sf ~/Dropbox/private/Documents ~/Documents
+fi
 
-echo "+ git"
-rm -rf ~/.gitconfig ~/.gitignore-global
-ln -sf ~/dotfiles/gitconfig ~/.gitconfig
-ln -sf ~/dotfiles/gitignore-global ~/.gitignore-global
-# printf "Github token: "
-# read token
-# sed -i -e "s/GITHUB_TOKEN/$token/g" ~/.gitconfig
-
-# from yoursachet.com
-echo "+ vim"
-rm -rf ~/.vim ~/.vimrc
-ln -sf ~/dotfiles/vimrc ~/.vimrc
-ln -sf ~/dotfiles/vim ~/.vim
-
-echo "+ ssh"
-rm -rf ~/.ssh
-ln -sf ~/dotfiles/ssh ~/.ssh
 # fix ssh-keys permission
 chmod 600 ~/Dropbox/private/ssh-keys/*
 
-echo "+ sublime settings via package control from dropbox"
+echo "+ sublime settings via package control from Dropbox"
 mkdir -p ~/Library/Application\ Support/Sublime\ Text\ 2/Installed\ Packages
 mkdir -p ~/Library/Application\ Support/Sublime\ Text\ 2/Packages
 
