@@ -46,3 +46,5 @@ curl https://sublime.wbond.net/Package%20Control.sublime-package > ~/Library/App
 # symlink config for dropbox
 rm -rf ~/Library/Application\ Support/Sublime\ Text\ 2/Packages/User
 ln -sf ~/Dropbox/private/Sublime/User ~/Library/Application\ Support/Sublime\ Text\ 2/Packages/
+
+sudo ln -s /Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl /usr/bin/
