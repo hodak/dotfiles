@@ -19,7 +19,7 @@ function symlink-dotfiles() {
 
 echo "+ backup current dotfiles"
 echo "+ symlink new dotfiles"
-symlink-dotfiles zshrc gemrc irbrc powconfig tmux.conf gitconfig gitignore-global vim vimrc ssh
+symlink-dotfiles zshrc gemrc irbrc powconfig tmux.conf gitconfig gitignore-global vim vimrc
 
 echo "+ symlink Documents from Dropbox"
 if [[ ! -h ~/Documents ]]; then
@@ -28,8 +28,14 @@ if [[ ! -h ~/Documents ]]; then
   ln -sf ~/Dropbox/private/Documents ~/Documents
 fi
 
+if [[ -e ~/.ssh ]]; then
+  backup_dir=$(ls -c ~/ | grep "^dotfiles-" | tail -n 1)
+  mv ~/.ssh ~/$backup_dir
+  ln -sf ~/Dropbox/private/ssh ~/.ssh
+fi
 # fix ssh-keys permission
-chmod 600 ~/Dropbox/private/ssh-keys/*
+chmod 644 ~/Dropbox/private/ssh/*
+chmod 600 ~/Dropbox/private/ssh/id_rsa*
 
 echo "+ sublime settings via package control from Dropbox"
 mkdir -p ~/Library/Application\ Support/Sublime\ Text\ 2/Installed\ Packages
