@@ -22,11 +22,12 @@ function fm {
   fi
 }
 
-# project momterail/mm4-launchpad mm4/launchpad
-# project mm4/launchpad
+# project chytreg/dotfiles my/dotfiles
+# project my/dotfiles
 
 function project {
 : ${1?"Usage: project project_dir"}
+  mkdir -p ~/src
   project_dir="${@: -1}"
   project_name=$1
   project_path=~/src/$project_dir
