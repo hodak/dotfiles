@@ -50,3 +50,42 @@ function project {
     echo "~ Can't find project: $project_name"
   fi
 }
+
+function services() {
+  if [ -z $agent ]; then
+    echo "Service: $1 not found"
+  else
+    case "$2" in
+    "start")
+      launchctl load -w $service_path/$agent
+      ;;
+    "stop")
+      launchctl unload $service_path/$agent
+      ;;
+    "reload")
+      launchctl load -w $service_path/$agent
+      launchctl unload $service_path/$agent
+      ;;
+    *)
+      echo "Usage: $0 $1 start|stop|reload"
+      ;;
+    esac
+  fi
+}
+
+# agents name start|stop|reload|install
+
+function agents(){
+: ${1?"Usage: agents name start|stop|reload|install"}
+  service_path=~/Library/LaunchAgents
+  if [ $2 = 'install' ]; then
+    if (brew --prefix $1 > /dev/null); then
+      ln -sfv $(brew --prefix $1)/*.plist $service_path
+      agent=$(ls -L $service_path | grep $1 | head -n 1)
+      services $1 'start'
+    fi
+  else
+    agent=$(ls -L $service_path | grep $1 | head -n 1)
+    services $1 $2
+  fi
+}
