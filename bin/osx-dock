@@ -8,6 +8,9 @@ defaults write com.apple.dock orientation -string left
 echo "Autohide Dock"
 defaults write com.apple.dock autohide -boolean true
 
+echo "Make dock transparent"
+defaults write com.apple.dock hide-mirror -bool true
+
 clear_dock() {
   defaults write com.apple.dock persistent-apps -array ''
 }
