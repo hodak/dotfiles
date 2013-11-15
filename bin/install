@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 
 echo "+ submodules"
-cd ~/dotfiles; git pull origin master; git submodule update --init
+cd ~/dotfiles; git pull origin master; git submodule update --init --recursive
+
+# run command below to update submodules
+# git submodule foreach git pull origin master
 
 function symlink-dotfiles() {
   local backup_dir="dotfiles-$(date +'%Y-%m-%d-%H%M%S').bak"
