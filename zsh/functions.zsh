@@ -90,3 +90,7 @@ function agents(){
     services $1 $2
   fi
 }
+
+function remove-backups() {
+  ls -d ~/* | grep '.*bak' | xargs -I {} rm -rf {}
+}
