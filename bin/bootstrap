@@ -44,11 +44,6 @@ if !(brew tap | grep cask > /dev/null); then
   brew tap phinze/homebrew-cask
 fi
 
-if !(brew list | grep brew-cask > /dev/null); then
-  echo "Installing brew-cask"
-  brew install brew-cask
-fi
-
 brew_cask_install() {
   for app; do
     local app_name="$(echo $app | sed 's/-/ /')"
@@ -107,6 +102,23 @@ run_app() {
   done
 }
 
+brew_install brew-cask rbenv rbenv-default-gems rbenv-gem-rehash ruby-build \
+  imagemagick redis memcached mongodb mysql postgresql elasticsearch node
+
+agents_install redis memcached mongodb mysql postgresql elasticsearch
+
+# Setup pow
+if !(brew list | grep pow > /dev/null); then
+  echo "Installing: pow"
+  brew install pow
+  mkdir -p ~/Library/Application\ Support/Pow/Hosts
+  ln -sf ~/Library/Application\ Support/Pow/Hosts ~/.pow
+  sudo pow --install-system
+  pow --install-local
+  sudo launchctl load -w /Library/LaunchDaemons/cx.pow.firewall.plist
+  launchctl load -w ~/Library/LaunchAgents/cx.pow.powd.plist
+fi
+
 brew_cask_install caffeine dropbox f-lux heroku-toolbelt \
   firefox google-chrome harvest hipchat iterm2 sequel-pro \
   virtualbox clipmenu alfred spectacle
@@ -125,23 +137,6 @@ if [[ "$OSTYPE" =~ ^darwin13.*$ ]]; then
   defaults import com.googlecode.iterm2 ~/dotfiles/defaults/com.googlecode.iterm2
 else
   echo "defaults import works only on Mavericks"
-fi
-
-brew_install rbenv rbenv-default-gems rbenv-gem-rehash ruby-build \
-  imagemagick redis memcached mongodb mysql postgresql elasticsearch node
-
-agents_install redis memcached mongodb mysql postgresql elasticsearch
-
-# Setup pow
-if !(brew list | grep pow > /dev/null); then
-  echo "Installing: pow"
-  brew install pow
-  mkdir -p ~/Library/Application\ Support/Pow/Hosts
-  ln -sf ~/Library/Application\ Support/Pow/Hosts ~/.pow
-  sudo pow --install-system
-  pow --install-local
-  sudo launchctl load -w /Library/LaunchDaemons/cx.pow.firewall.plist
-  launchctl load -w ~/Library/LaunchAgents/cx.pow.powd.plist
 fi
 
 exit 0
