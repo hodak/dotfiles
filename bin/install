@@ -37,14 +37,24 @@ ln -sf ~/dotfiles/ssh ~/.ssh
 # fix ssh-keys permission
 chmod 600 ~/Dropbox/private/ssh-keys/*
 
-echo "+ sublime settings from dropbox"
-rm -rf ~/Library/Application\ Support/Sublime\ Text\ 2
+echo "+ sublime settings via package control from dropbox"
 mkdir -p ~/Library/Application\ Support/Sublime\ Text\ 2/Installed\ Packages
 mkdir -p ~/Library/Application\ Support/Sublime\ Text\ 2/Packages
-# install package control
-curl https://sublime.wbond.net/Package%20Control.sublime-package > ~/Library/Application\ Support/Sublime\ Text\ 2/Installed\ Packages/Package\ Control.sublime-package
-# symlink config for dropbox
-rm -rf ~/Library/Application\ Support/Sublime\ Text\ 2/Packages/User
-ln -sf ~/Dropbox/private/Sublime/User ~/Library/Application\ Support/Sublime\ Text\ 2/Packages/
 
-sudo ln -s /Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl /usr/bin/
+if [[ ! -e ~/Library/Application\ Support/Sublime\ Text\ 2/Installed\ Packages/Package\ Control.sublime-package ]]; then
+  echo "+ install sublime package control"
+  curl https://sublime.wbond.net/Package%20Control.sublime-package > ~/Library/Application\ Support/Sublime\ Text\ 2/Installed\ Packages/Package\ Control.sublime-package
+fi
+
+if [[ ! -h ~/Library/Application\ Support/Sublime\ Text\ 2/Packages/User ]]; then
+  if [[ -e ~/Library/Application\ Support/Sublime\ Text\ 2/Packages/User ]]; then
+  	backup_dir="User-$(date +'%Y-%m-%d-%H%M%S').bak"
+  	mv ~/Library/Application\ Support/Sublime\ Text\ 2/Packages/User ~/Library/Application\ Support/Sublime\ Text\ 2/Packages/$backup_dir
+  fi
+  ln -sf ~/Dropbox/private/Sublime/User ~/Library/Application\ Support/Sublime\ Text\ 2/Packages/
+fi
+
+if [[ ! -h /usr/bin/subl ]]; then
+  echo "+ subl symlink"
+  sudo ln -s /Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl /usr/bin/
+fi
