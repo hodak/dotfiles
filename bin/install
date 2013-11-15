@@ -31,8 +31,9 @@ fi
 if [[ -e ~/.ssh ]]; then
   backup_dir=$(ls -c ~/ | grep "^dotfiles-" | tail -n 1)
   mv ~/.ssh ~/$backup_dir
-  ln -sf ~/Dropbox/private/ssh ~/.ssh
 fi
+ln -sf ~/Dropbox/private/ssh ~/.ssh
+
 # fix ssh-keys permission
 chmod 644 ~/Dropbox/private/ssh/*
 chmod 600 ~/Dropbox/private/ssh/id_rsa*
