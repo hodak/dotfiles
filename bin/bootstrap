@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+source ~/dotfiles/zsh/functions.zsh
 
 set -e
 
@@ -33,10 +34,10 @@ if !(which brew > /dev/null); then
 fi
 
 echo "Updating brew..."
-# brew update || true
+brew update || true
 
 echo "Running brew doctor..."
-# brew doctor || true
+brew doctor || true
 
 if !(brew tap | grep cask > /dev/null); then
   echo "Tap hombrew-cask"
@@ -69,13 +70,26 @@ brew_install() {
   done
 }
 
-allow_control() {
+agents_install() {
   for app; do
-    APP_ID="$(osascript -e "id of app \"$app\"")"
-    if [[ -n "$APP_ID" ]]; then
-      sudo sqlite3 /Library/Application\ Support/com.apple.TCC/TCC.db "INSERT or REPLACE INTO access values ('kTCCServiceAccessibility', '$APP_ID', 0, 1, 0, NULL);"
+    if !(launchctl list | grep $app > /dev/null); then
+      echo "Installing agent: $app"
+      agents $app install || true
     fi
   done
+}
+
+allow_control() {
+  if [[ "$OSTYPE" =~ ^darwin13.*$ ]]; then
+    for app; do
+      APP_ID="$(osascript -e "id of app \"$app\"")"
+      if [[ -n "$APP_ID" ]]; then
+        sudo sqlite3 /Library/Application\ Support/com.apple.TCC/TCC.db "INSERT or REPLACE INTO access values ('kTCCServiceAccessibility', '$APP_ID', 0, 1, 0, NULL);"
+      fi
+    done
+  else
+    echo "allow_control works only on Mavericks"
+  fi
 }
 
 autostart_hidden() {
@@ -106,11 +120,17 @@ echo "Run default applications"
 defaults write com.lightheadsw.Caffeine SuppressLaunchMessage 1
 run_app ClipMenu Spectacle Caffeine Flux Dropbox 'Alfred 2'
 
-echo "Import Iterm2.app defaults"
-defaults import com.googlecode.iterm2 ~/dotfiles/defaults/com.googlecode.iterm2
+if [[ "$OSTYPE" =~ ^darwin13.*$ ]]; then
+  echo "Import Iterm2.app defaults"
+  defaults import com.googlecode.iterm2 ~/dotfiles/defaults/com.googlecode.iterm2
+else
+  echo "defaults import works only on Mavericks"
+fi
 
 brew_install rbenv rbenv-default-gems rbenv-gem-rehash ruby-build \
-  imagemagick redis memcached mongo mysql postgres elasticsearch node
+  imagemagick redis memcached mongodb mysql postgresql elasticsearch node
+
+agents_install redis memcached mongodb mysql postgresql elasticsearch
 
 # Setup pow
 if !(brew list | grep pow > /dev/null); then
