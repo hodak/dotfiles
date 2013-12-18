@@ -64,8 +64,8 @@ function services() {
       launchctl unload $service_path/$agent
       ;;
     "reload")
-      launchctl load -w $service_path/$agent
       launchctl unload $service_path/$agent
+      launchctl load -w $service_path/$agent
       ;;
     *)
       echo "Usage: $0 $1 start|stop|reload"
