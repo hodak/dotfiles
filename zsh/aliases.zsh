@@ -9,3 +9,4 @@ alias jsonp="ruby -r json -e 'puts JSON.pretty_generate(JSON.parse(readlines.joi
 alias g="git"
 alias gpsh="g up; g push"
 alias clear-dns="dscacheutil -flushcache"
+alias wcli="webistrano_cli"

@@ -38,6 +38,9 @@ ln -sf ~/Dropbox/private/ssh ~/.ssh
 chmod 644 ~/Dropbox/private/ssh/*
 chmod 600 ~/Dropbox/private/ssh/id_rsa*
 
+echo "+ webistrano_cli"
+ln -sf ~/Dropbox/private/webistrano_cli.yml ~/.webistrano_cli.yml
+
 echo "+ sublime settings via package control from Dropbox"
 mkdir -p ~/Library/Application\ Support/Sublime\ Text\ 2/Installed\ Packages
 mkdir -p ~/Library/Application\ Support/Sublime\ Text\ 2/Packages
