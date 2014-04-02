@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+
+echo "+ symlink Documents from Dropbox"
+if [[ ! -h ~/Documents ]]; then
+  backup_dir="Documents-$(date +'%Y-%m-%d-%H%M%S').bak"
+  mv ~/Documents ~/$backup_dir
+  ln -sf ~/Dropbox/private/Documents ~/Documents
+fi
+
+if [[ -e ~/.ssh ]]; then
+  backup_dir=$(ls -c ~/ | grep "^dotfiles-" | tail -n 1)
+  mv ~/.ssh ~/$backup_dir
+fi
+ln -sf ~/Dropbox/private/ssh ~/.ssh
+
+# fix ssh-keys permission
+chmod 644 ~/Dropbox/private/ssh/*
+chmod 600 ~/Dropbox/private/ssh/id_rsa*
+
+echo "+ webistrano_cli"
+ln -sf ~/Dropbox/private/webistrano_cli.yml ~/.webistrano_cli.yml
+
+echo "+ sublime settings via package control from Dropbox"
+mkdir -p ~/Library/Application\ Support/Sublime\ Text\ 2/Installed\ Packages
+mkdir -p ~/Library/Application\ Support/Sublime\ Text\ 2/Packages
+
+if [[ ! -e ~/Library/Application\ Support/Sublime\ Text\ 2/Installed\ Packages/Package\ Control.sublime-package ]]; then
+  echo "+ install sublime package control"
+  curl https://sublime.wbond.net/Package%20Control.sublime-package > ~/Library/Application\ Support/Sublime\ Text\ 2/Installed\ Packages/Package\ Control.sublime-package
+fi
+
+if [[ ! -h ~/Library/Application\ Support/Sublime\ Text\ 2/Packages/User ]]; then
+  if [[ -e ~/Library/Application\ Support/Sublime\ Text\ 2/Packages/User ]]; then
+    backup_dir="User-$(date +'%Y-%m-%d-%H%M%S').bak"
+    mv ~/Library/Application\ Support/Sublime\ Text\ 2/Packages/User ~/Library/Application\ Support/Sublime\ Text\ 2/Packages/$backup_dir
+  fi
+  ln -sf ~/Dropbox/private/Sublime/User ~/Library/Application\ Support/Sublime\ Text\ 2/Packages/
+fi
+
+if [[ ! -h /usr/bin/subl ]]; then
+  echo "+ subl symlink"
+  sudo ln -s /Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl /usr/bin/
+fi
