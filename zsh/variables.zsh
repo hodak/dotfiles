@@ -2,7 +2,7 @@
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/opt/X11/bin"
 
 # == rbenv ==
-if which rbenv > /dev/null; then eval "$(rbenv init - --no-rehash)"; fi
+if which rbenv > /dev/null; then eval "$(rbenv init - zsh --no-rehash)"; fi
 
 # == java-opts ==
 export JAVA_OPTS="-Xms256m -Xmx512m -Dfile.encoding=UTF-8 -noverify"
