@@ -50,6 +50,9 @@ brew_cask_install caffeine dropbox flux heroku-toolbelt \
   virtualbox clipmenu alfred spectacle gitx-l sublime-text \
   nvalt grabbox
 
+# make cask apps searchable by alfred
+brew cask alfred link
+
 echo "Allow control"
 allow_control Spectacle
 
