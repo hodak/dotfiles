@@ -82,6 +82,7 @@ function agents(){
   if [ $2 = 'install' ]; then
     if (brew --prefix $1 > /dev/null); then
       ln -sfv $(brew --prefix $1)/*.plist $service_path
+      chmod 644 $(brew --prefix $1)/*.plist
       agent=$(ls -L $service_path | grep $1 | head -n 1)
       services $1 'start'
     fi
