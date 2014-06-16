@@ -70,7 +70,7 @@ brew_install brew-cask rbenv rbenv-default-gems rbenv-gem-rehash ruby-build \
 
 agents_install redis memcached mongodb mysql postgresql elasticsearch
 
-# Setup pow
+# setup pow
 if !(brew list | grep pow > /dev/null); then
   echo "Installing: pow"
   brew install pow
@@ -81,5 +81,13 @@ if !(brew list | grep pow > /dev/null); then
   sudo launchctl load -w /Library/LaunchDaemons/cx.pow.firewall.plist
   launchctl load -w ~/Library/LaunchAgents/cx.pow.powd.plist
 fi
+
+# setup ruby
+RUBY_VERSION="2.0.0-p481"
+if !(rbenv versions | grep $RUBY_VERSION > /dev/null); then
+  echo "Installing: ruby $RUBY_VERSION"
+  rbenv install $RUBY_VERSION
+fi
+rbenv global $RUBY_VERSION
 
 exit 0
