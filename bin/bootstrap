@@ -47,18 +47,6 @@ fi
 echo "Upgrade brew-cask..."
 brew upgrade brew-cask || true
 
-brew_cask_install() {
-  for app; do
-    local app_name="$(echo $app | sed 's/-/ /')"
-    if (ls /Applications/ | grep -i "$app_name" > /dev/null) || (brew cask list | grep $app > /dev/null); then
-      echo "Already installed: $app_name"
-    else
-      echo "Installing: $app"
-      brew cask install --appdir="/Applications" $app || true
-    fi
-  done
-}
-
 brew_install() {
   for app; do
     if !(brew list | grep $app > /dev/null); then
@@ -73,34 +61,6 @@ agents_install() {
     if !(launchctl list | grep $app > /dev/null); then
       echo "Installing agent: $app"
       agents $app install || true
-    fi
-  done
-}
-
-allow_control() {
-  if [[ "$OSTYPE" =~ ^darwin13.*$ ]]; then
-    for app; do
-      APP_ID="$(osascript -e "id of app \"$app\"")"
-      if [[ -n "$APP_ID" ]]; then
-        sudo sqlite3 /Library/Application\ Support/com.apple.TCC/TCC.db "INSERT or REPLACE INTO access values ('kTCCServiceAccessibility', '$APP_ID', 0, 1, 0, NULL);"
-      fi
-    done
-  else
-    echo "allow_control works only on Mavericks"
-  fi
-}
-
-autostart_hidden() {
-  for app; do
-    echo "Autostart: $app"
-    osascript -e "tell application \"System Events\" to make login item at end with properties {path:\"/Applications/$app.app\", hidden:true}" > /dev/null
-  done
-}
-
-run_app() {
-  for app; do
-    if test "$(osascript -e "tell application \"System Events\" to (name of processes) contains \"$app\"")" = "false"; then
-      open -a "$app"
     fi
   done
 }
@@ -120,26 +80,6 @@ if !(brew list | grep pow > /dev/null); then
   pow --install-local
   sudo launchctl load -w /Library/LaunchDaemons/cx.pow.firewall.plist
   launchctl load -w ~/Library/LaunchAgents/cx.pow.powd.plist
-fi
-
-brew_cask_install caffeine dropbox flux heroku-toolbelt \
-  firefox google-chrome harvest hipchat iterm2 sequel-pro \
-  virtualbox clipmenu alfred spectacle gitx-l sublime-text
-
-echo "Allow control"
-allow_control Spectacle
-
-autostart_hidden ClipMenu Spectacle Caffeine Flux Dropbox 'Alfred 2'
-
-echo "Run default applications"
-defaults write com.lightheadsw.Caffeine SuppressLaunchMessage 1
-run_app ClipMenu Spectacle Caffeine Flux Dropbox 'Alfred 2'
-
-if [[ "$OSTYPE" =~ ^darwin13.*$ ]]; then
-  echo "Import Iterm2.app defaults"
-  defaults import com.googlecode.iterm2 ~/dotfiles/defaults/com.googlecode.iterm2
-else
-  echo "defaults import works only on Mavericks"
 fi
 
 exit 0
