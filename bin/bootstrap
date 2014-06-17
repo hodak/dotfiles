@@ -90,4 +90,8 @@ if !(rbenv versions | grep $RUBY_VERSION > /dev/null); then
 fi
 rbenv global $RUBY_VERSION
 
+echo "Configuring Bundler for faster, parallel gem installation ..."
+number_of_cores=`sysctl -n hw.ncpu`
+bundle config --global jobs `expr $number_of_cores - 1`
+
 exit 0
