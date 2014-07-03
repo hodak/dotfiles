@@ -39,9 +39,14 @@ brew update || true
 echo "Running brew doctor..."
 brew doctor || true
 
-if !(brew tap | grep cask > /dev/null); then
-  echo "Tap hombrew-cask"
+if !(brew tap | grep caskroom/cask > /dev/null); then
+  echo "Tap caskroom/cask"
   brew tap caskroom/cask
+fi
+
+if !(brew tap | grep caskroom/versions > /dev/null); then
+  echo "Tap caskroom/versions"
+  brew tap caskroom/versions
 fi
 
 echo "Upgrade brew-cask..."

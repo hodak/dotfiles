@@ -47,7 +47,7 @@ run_app() {
 
 brew_cask_install caffeine dropbox flux heroku-toolbelt \
   firefox google-chrome harvest hipchat iterm2 sequel-pro \
-  virtualbox clipmenu alfred spectacle gitx-l sublime-text \
+  virtualbox clipmenu alfred spectacle gitx-l sublime-text3 \
   nvalt grabbox
 
 # make cask apps searchable by alfred
