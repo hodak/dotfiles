@@ -12,3 +12,5 @@ bin/bootstrap
 # Apply my custom OS X settins
 bin/osx-defaults && bin/osx-dock
 ```
+
+### [Brew multiple user setup](http://blog.strug.de/2012/06/my-homebrew-multi-user-setup/)
