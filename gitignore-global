@@ -32,3 +32,4 @@ vendor/bundle
 vendor/relics_cleanup.db.zip
 zeus.json
 .sky
+.ruby-version

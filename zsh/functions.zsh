@@ -55,3 +55,8 @@ function project {
 function remove-backups() {
   ls -d ~/* | grep '.*bak' | xargs -I {} rm -rf {}
 }
+
+function fix-hipchat() {
+  curl -fsSL http://bitly.com/10wDsM7 | bash
+}
+
