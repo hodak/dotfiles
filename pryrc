@@ -12,3 +12,20 @@ module Sidekiq
     end
   end
 end
+
+# execute sql in rails console
+def sql(query)
+  ActiveRecord::Base.connection.execute(query)
+end
+
+def toggle_show_sql
+  current_logger = ActiveRecord::Base.logger
+  ActiveRecord::Base.logger = if current_logger then nil else Logger.new(STDOUT) end
+end
+
+class Regexp
+  def to_javascript
+    Regexp.new(inspect.sub('\\A','^').sub('\\Z','$').sub('\\z','$').sub(/^\//,'').sub(/\/[a-z]*$/,'').gsub(/\(\?#.+\)/, '').gsub(/\(\?-\w+:/,'('), self.options).inspect
+  end
+end
+
