@@ -80,3 +80,6 @@ fi
 export PATH=/Users/hodak/Applications/arcanist/arcanist/bin/:$PATH
 source /Users/hodak/Applications/arcanist/arcanist/resources/shell/bash-completion
 
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
