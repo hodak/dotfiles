@@ -20,5 +20,5 @@ function symlink-dotfiles() {
 echo "+ backup current dotfiles"
 echo "+ symlink new dotfiles"
 symlink-dotfiles zshrc gemrc irbrc pryrc powconfig tmux.conf \
-  gitconfig gitignore-global vimrc rbenv/default-gems \
+  gitconfig gitignore-global githelpers vimrc rbenv/default-gems \
   bash_profile bashrc
