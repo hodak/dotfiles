@@ -61,11 +61,11 @@ brew_install() {
   done
 }
 
-services_install() {
+agents_install() {
   for app; do
-    if !(brew services list | grep $app > /dev/null); then
-      echo "Starting: $app"
-      brew services start $app || true
+    if !(launchctl list | grep $app > /dev/null); then
+      echo "Installing agent: $app"
+      agents $app install || true
     fi
   done
 }
@@ -73,7 +73,7 @@ services_install() {
 brew_install brew-cask rbenv rbenv-default-gems rbenv-gem-rehash ruby-build \
   imagemagick redis memcached mongodb mysql postgresql elasticsearch node
 
-services_install redis memcached mysql postgresql elasticsearch
+agents_install redis memcached mongodb mysql postgresql elasticsearch
 
 # setup pow
 if !(brew list | grep pow > /dev/null); then
