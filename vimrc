@@ -77,7 +77,7 @@ if has('vim_starting')
 endif
 
 " Required:
-call neobundle#rc(expand('~/.vim/bundle/'))
+call neobundle#begin(expand('~/.vim/bundle/'))
 
 " Let NeoBundle manage NeoBundle
 " Required:
@@ -158,6 +158,8 @@ let g:syntastic_check_on_open=0
 let g:syntastic_enable_signs=1
 
 NeoBundle 'terryma/vim-expand-region'
+
+call neobundle#end()
 """ /NEOBUNDLE
 
 " testing
