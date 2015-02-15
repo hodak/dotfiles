@@ -31,10 +31,6 @@ set splitright
 set ic
 " ** END OF MINIMAL VIMRC **
 
-" The best colorscheme ;)
-colorscheme molokai
-let g:molokai_original = 1
-
 " Beautiful font
 set guifont=Monaco
 
@@ -159,6 +155,8 @@ let g:syntastic_enable_signs=1
 
 NeoBundle 'terryma/vim-expand-region'
 
+NeoBundle 'flazz/vim-colorschemes'
+
 call neobundle#end()
 """ /NEOBUNDLE
 
@@ -204,4 +202,6 @@ endif
 
 " Tab2Space
 :command! -range=% -nargs=0 Tab2Space execute '<line1>,<line2>s#^\t\+#\=repeat(" ", len(submatch(0))*' . &ts . ')'
+
+colorscheme monokain
 

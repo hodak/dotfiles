@@ -10,7 +10,3 @@ ln -sf ~/Dropbox/dotfiles/ssh ~/.ssh
 chmod 644 ~/Dropbox/dotfiles/ssh/*
 chmod 600 ~/Dropbox/dotfiles/ssh/id_rsa*
 
-# Molokai colors for vim
-mkdir -p ~/.vim/colors
-ln -sf ~/Dropbox/dotfiles/molokai.vim ~/.vim/colors/
-
