@@ -14,7 +14,7 @@ if [[ "$OSTYPE" == darwin* ]]; then export BROWSER='open'; fi
 if [[ -z "$LANG" ]]; then export LANG='en_US.UTF-8'; fi
 
 # == editors ==
-export EDITOR='subl -w'
+export EDITOR='vim'
 export VISUAL='subl -w'
 export PAGER='less'
 

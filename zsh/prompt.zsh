@@ -49,5 +49,5 @@ if [ `id -u` -eq "0" ]; then
 else
   # local DIR=$(pwd)
   # if [ $DIR = ]
-  PROMPT='${PR_BLUE}⌘ ${PR_BRIGHT_YELLOW}%$PR_PWDLEN<...<%~% ${PR_RESET}$(git_prompt_string) > '
+  PROMPT='${PR_BLUE}⚡ ${PR_BRIGHT_YELLOW}%$PR_PWDLEN<...<%~% ${PR_RESET}$(git_prompt_string) > '
 fi

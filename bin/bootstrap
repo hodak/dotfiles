@@ -72,6 +72,7 @@ agents_install() {
 
 brew_install brew-cask rbenv rbenv-default-gems rbenv-gem-rehash ruby-build \
   imagemagick redis memcached mongodb mysql postgresql elasticsearch node
+  zsh-completions
 
 agents_install redis memcached mongodb mysql postgresql elasticsearch
 

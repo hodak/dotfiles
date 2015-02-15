@@ -10,3 +10,17 @@ source ~/dotfiles/zsh-history-substring-search/zsh-history-substring-search.zsh
 # == ssh-keys ==
 ssh-add ~/Dropbox/private/ssh/id_rsa 2> /dev/null
 ssh-add ~/Dropbox/private/ssh/id_rsa_monterail 2> /dev/null
+
+export TERM="xterm-256color"
+
+# == PATH ==
+export PATH=/usr/local/bin:$PATH
+export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
+export PATH=/usr/local/sbin:$PATH
+export PATH="/usr/local/heroku/bin:$PATH"
+
+fpath=(/usr/local/share/zsh-completions $fpath)
+
+eval "$(rbenv init -)"
+
