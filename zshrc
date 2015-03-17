@@ -24,3 +24,4 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 
 eval "$(rbenv init -)"
 
+bindkey -e
