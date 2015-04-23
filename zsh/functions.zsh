@@ -3,6 +3,10 @@ function ip {
   echo "Ethernet: $(ifconfig en0 | grep netmask | awk '{print $2}')"
 }
 
+function git-remove-merged {
+  (git branch --merged | grep -v "\*" | xargs -n 1 git branch -d) || echo 'Nothing to do'
+}
+
 function new-scratch {
   date=$(date +'%Y-%m-%d-%H%M%S')
   cur_dir="$HOME/scratch"
