@@ -97,17 +97,12 @@ let g:ctrlp_cmd = 'CtrlP'
 " Ack
 NeoBundle 'rking/ag.vim'
 
-NeoBundle 'AndrewRadev/splitjoin.vim'
-nmap sj :SplitjoinSplit<cr>
-nmap sk :SplitjoinJoin<cr>
-
 NeoBundle 'tpope/vim-rails'
 NeoBundle 'tpope/vim-commentary'
 NeoBundle 'tpope/vim-endwise'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-sleuth'
 NeoBundle 'tpope/vim-haml'
-NeoBundle 'slim-template/vim-slim'
 NeoBundle 'digitaltoad/vim-jade'
 
 " NeoBundle 'vim-scripts/IndexedSearch'
@@ -135,9 +130,9 @@ else
   let g:vroom_spec_command = 'rspec --format=documentation'
 endif
 
-
 NeoBundle 'rking/pry-de', {'rtp': 'vim/'}
 map <Leader>bP orequire'pry-remote';binding.remote_pry<esc>:w<cr>
+map <Leader>bi orequire IEx; IEx.pry<esc>
 
 NeoBundle 'bling/vim-airline'
 let g:airline_theme='powerlineish'
@@ -156,6 +151,8 @@ let g:syntastic_enable_signs=1
 NeoBundle 'terryma/vim-expand-region'
 
 NeoBundle 'flazz/vim-colorschemes'
+
+NeoBundle 'elixir-lang/vim-elixir'
 
 call neobundle#end()
 """ /NEOBUNDLE
