@@ -10,3 +10,12 @@ ln -sf ~/Dropbox/dotfiles/ssh ~/.ssh
 chmod 644 ~/Dropbox/dotfiles/ssh/*
 chmod 600 ~/Dropbox/dotfiles/ssh/id_rsa*
 
+# http://ngs.io/2014/05/05/iterm2-color-schemes/
+# Afterglow
+cd ~/Dropbox/dotfiles/iterm2-color-schemes
+for f in *; do
+  THEME=$(basename "$f")
+  defaults write -app iTerm 'Custom Color Presets' -dict-add "$THEME" "$(cat "$f")"
+done
+cd -
+echo "Set Afterglow color scheme in iterm2"
