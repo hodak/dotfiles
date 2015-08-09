@@ -49,7 +49,7 @@ brew_cask_install caffeine dropbox flux heroku-toolbelt \
   firefox google-chrome harvest hipchat iterm2 sequel-pro \
   virtualbox clipmenu alfred bettertouchtool sublime-text3 \
   evernote slack lastpass opera spotify toggldesktop vlc \
-  calibre mailbox todoist forklift lastpass
+  mailbox todoist forklift lastpass
 
 # make cask apps searchable by alfred
 brew cask alfred link
