@@ -15,7 +15,7 @@ if [[ -z "$LANG" ]]; then export LANG='en_US.UTF-8'; fi
 
 # == editors ==
 export EDITOR='vim'
-export VISUAL='subl -w'
+export VISUAL='vim'
 export PAGER='less'
 
 # == java home ==
