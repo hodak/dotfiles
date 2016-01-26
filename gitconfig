@@ -15,6 +15,7 @@
   aa = add --all :/
   ff = merge --ff-only
   cp = cherry-pick
+  count = rev-list --count HEAD
 
   head = !git l -1
   h = !git head
