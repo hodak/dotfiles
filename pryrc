@@ -34,3 +34,4 @@ class Regexp
   end
 end
 
+self.send(:include, Rails::ConsoleMethods) if defined? Rails::ConsoleMethods
