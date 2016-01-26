@@ -11,6 +11,11 @@ module Sidekiq
       data["class"].constantize.new.perform(*data["args"])
     end
   end
+
+  def self.inline!
+    require "sidekiq/testing"
+    Sidekiq::Testing.inline!
+  end
 end
 
 # execute sql in rails console
