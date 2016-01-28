@@ -100,8 +100,8 @@ echo "Configuring Bundler for faster, parallel gem installation ..."
 number_of_cores=`sysctl -n hw.ncpu`
 bundle config --global jobs `expr $number_of_cores - 1`
 
-# Set up NeoBundle
-curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh > install.sh
-sh ./install.sh
+# Set up vim Plug
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 exit 0
