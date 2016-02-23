@@ -212,3 +212,8 @@ let g:airline_section_z=''
 " syntastic
 let g:syntastic_check_on_open=0
 let g:syntastic_enable_signs=1
+
+augroup reload_vimrc " {
+  autocmd!
+  autocmd BufWritePost $MYVIMRC source $MYVIMRC
+augroup END " }
