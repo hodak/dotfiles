@@ -8,7 +8,6 @@ sudo -v
 
 DEFAULT_SHELL=`which zsh`
 HOST_NAME="$USER.dev"
-BONJOUR_NAME="$USER-mac"
 
 CURRENT_SHELL="$(dscl . -read /Users/$USER UserShell | cut -d " " -f 2)"
 if test "$CURRENT_SHELL" != $DEFAULT_SHELL; then
@@ -20,11 +19,6 @@ if test "$(sudo scutil --get ComputerName)" != "$HOST_NAME"; then
   echo "Setting computer name to $HOST_NAME..."
   sudo scutil --set ComputerName "$HOST_NAME"
   sudo scutil --set HostName "$HOST_NAME"
-fi
-
-if test "$(sudo scutil --get LocalHostName)" != "$BONJOUR_NAME"; then
-  echo "Setting bonjour host name to $BONJOUR_NAME..."
-  sudo scutil --set LocalHostName "$BONJOUR_NAME"
 fi
 
 # Homebrew
