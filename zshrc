@@ -26,3 +26,8 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 eval "$(rbenv init -)"
 
 bindkey -e
+
+export NVM_DIR="/Users/hodak/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+test -s "$HOME/.kiex/scripts/kiex" && source "$HOME/.kiex/scripts/kiex"

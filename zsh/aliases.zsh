@@ -27,3 +27,7 @@ alias notes="cd ~/notes; vim"
 # Phoenix
 alias pserver="iex -S mix phoenix.server"
 alias simpleserver="open http://localhost:8000; python -m SimpleHTTPServer"
+
+alias flushdns='dscacheutil -flushcache;sudo killall -HUP mDNSResponder;say flushed'
+
+alias priex="iex --sname pry"

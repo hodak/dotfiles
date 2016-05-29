@@ -108,7 +108,6 @@ au GUIEnter * simalt ~x
 
 
 " NeoBundle 'godlygeek/tabular'
-" NeoBundle 'sheerun/vim-polyglot'
 
 
 " NeoBundle 'terryma/vim-expand-region'
@@ -137,7 +136,9 @@ set t_Co=256
 
 " http://newbiedoc.sourceforge.net/tutorials/vim/mapping-vim.html.en
 " map! ,cl console.log<space>
-map! ,cl console.log()<esc>i
+map! ,cl console.log();<esc>hi
+map! ,cg console.group('')<return>console.log()<return>console.groupEnd()<esc>kkhi
+map! ,ie Node.connect(:'pry@hodak'); require IEx; IEx.pry<esc>
 
 if exists('+colorcolumn')
   set colorcolumn=80
@@ -172,13 +173,29 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-rails'
 Plug 'scrooloose/nerdtree'
 Plug 'airblade/vim-rooter'
-Plug 'benmills/vimux' | Plug 'skalnik/vim-vroom'
+Plug 'yunake/vimux' | Plug 'skalnik/vim-vroom'
 Plug 'rking/pry-de', {'rtp': 'vim/'}
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 Plug 'bling/vim-airline'
 Plug 'scrooloose/syntastic'
+Plug 'keith/rspec.vim'
+Plug 'kchmck/vim-coffee-script'
+Plug 'othree/javascript-libraries-syntax.vim'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+Plug 'slim-template/vim-slim'
+Plug 'mtscout6/vim-cjsx'
+Plug 'othree/html5.vim'
+Plug 'posva/vim-vue'
+
+" ,rt -> to strings
+" ,rr -> to symbols
+" Plug 'rorymckinley/vim-rubyhash'
+
+Plug 'elixir-lang/vim-elixir'
 call plug#end()
 
 " ctrlp
@@ -191,7 +208,13 @@ let g:ctrlp_map = '<leader>p'
 let g:ctrlp_cmd = 'CtrlP'
 
 " vim-colorschemes
-colorscheme monokain
+
+" molokai I've used for a long time:
+" colorscheme molokai
+" let g:molokai_original = 0
+" let g:rehash256 = 1
+
+colorscheme hybrid
 
 " vim-vroom
 let g:vroom_use_vimux = 1
@@ -202,6 +225,7 @@ if filereadable("bin/rspec")
 else
   let g:vroom_spec_command = 'rspec --format=documentation'
 endif
+let g:vroom_mix_test_command = 'elixir --sname mixtest -S mix test --color'
 
 " vim-airline
 let g:airline_theme='powerlineish'
@@ -213,7 +237,14 @@ let g:airline_section_z=''
 let g:syntastic_check_on_open=0
 let g:syntastic_enable_signs=1
 
+let g:used_javascript_libs = 'angularjs'
+
+set ttyfast
+set ttyscroll=3
+
 augroup reload_vimrc " {
   autocmd!
   autocmd BufWritePost $MYVIMRC source $MYVIMRC
 augroup END " }
+
+au BufRead,BufNewFile *.vue set filetype=html
