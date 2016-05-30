@@ -16,7 +16,7 @@ HOST_NAME="obla-di-bla-da"
 # sudo apt update
 # sudo apt upgrade
 sudo apt install build-essential libssl-dev rbenv ruby-build imagemagick memcached \
-  postgresql tmux cmake vim redis-server silversearcher-ag mysql-server
+  python-dev python3-dev postgresql tmux cmake vim redis-server silversearcher-ag mysql-server
 
 # This command can't be run twice
 # git clone https://github.com/rbenv/rbenv-vars.git $(rbenv root)/plugins/rbenv-vars
