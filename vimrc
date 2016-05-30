@@ -179,7 +179,8 @@ Plug 'airblade/vim-rooter'
 Plug 'yunake/vimux' | Plug 'skalnik/vim-vroom'
 Plug 'rking/pry-de', {'rtp': 'vim/'}
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
-Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/syntastic'
 Plug 'keith/rspec.vim'
 Plug 'kchmck/vim-coffee-script'
