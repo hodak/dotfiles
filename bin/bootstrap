@@ -7,92 +7,31 @@ set -e
 sudo -v
 
 DEFAULT_SHELL=`which zsh`
-HOST_NAME="$USER.dev"
+HOST_NAME="obla-di-bla-da"
 
-CURRENT_SHELL="$(dscl . -read /Users/$USER UserShell | cut -d " " -f 2)"
-if test "$CURRENT_SHELL" != $DEFAULT_SHELL; then
-  echo "Changing default shell to $DEFAULT_SHELL..."
-  sudo chsh -s "$DEFAULT_SHELL" "$USER"
-fi
+# sudo apt install zsh
+# echo "Changing default shell to $DEFAULT_SHELL..."
+# sudo chsh -s "$DEFAULT_SHELL" "$USER"
 
-if test "$(sudo scutil --get ComputerName)" != "$HOST_NAME"; then
-  echo "Setting computer name to $HOST_NAME..."
-  sudo scutil --set ComputerName "$HOST_NAME"
-  sudo scutil --set HostName "$HOST_NAME"
-fi
+# sudo apt update
+# sudo apt upgrade
+sudo apt install build-essential libssl-dev rbenv ruby-build imagemagick memcached \
+  postgresql tmux cmake vim redis-server silversearcher-ag mysql-server
 
-# Homebrew
-if !(which brew > /dev/null); then
-  echo 'Installing brew...'
-  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-fi
+# This command can't be run twice
+# git clone https://github.com/rbenv/rbenv-vars.git $(rbenv root)/plugins/rbenv-vars
 
-echo "Updating brew..."
-brew update || true
-
-echo "Running brew doctor..."
-brew doctor || true
-
-if !(brew tap | grep caskroom/cask > /dev/null); then
-  echo "Tap caskroom/cask"
-  brew tap caskroom/cask
-fi
-
-if !(brew tap | grep caskroom/versions > /dev/null); then
-  echo "Tap caskroom/versions"
-  brew tap caskroom/versions
-fi
-
-echo "Upgrade brew-cask..."
-brew upgrade brew-cask || true
-
-brew_install() {
-  for app; do
-    if !(brew list | grep $app > /dev/null); then
-      echo "Installing: $app"
-      brew install $app || true
-    fi
-  done
-}
-
-agents_install() {
-  for app; do
-    if !(launchctl list | grep $app > /dev/null); then
-      echo "Installing agent: $app"
-      agents $app install || true
-    fi
-  done
-}
-
-brew_install brew-cask rbenv rbenv-default-gems rbenv-gem-rehash ruby-build \
-  imagemagick redis memcached mongodb mysql postgresql elasticsearch node
-  zsh-completions rbenv-vars tmux cmake vim the_silver_searcher
-
-agents_install redis memcached mongodb mysql postgresql elasticsearch
-
-# setup pow
-if !(brew list | grep pow > /dev/null); then
-  echo "Installing: pow"
-  brew install pow
-  mkdir -p ~/Library/Application\ Support/Pow/Hosts
-  ln -sf ~/Library/Application\ Support/Pow/Hosts ~/.pow
-  sudo pow --install-system
-  pow --install-local
-  sudo launchctl load -w /Library/LaunchDaemons/cx.pow.firewall.plist
-  launchctl load -w ~/Library/LaunchAgents/cx.pow.powd.plist
-fi
-
-# setup ruby
-RUBY_VERSION="2.0.0-p481"
+## setup ruby
+RUBY_VERSION="2.2.3"
 if !(rbenv versions | grep $RUBY_VERSION > /dev/null); then
   echo "Installing: ruby $RUBY_VERSION"
   rbenv install $RUBY_VERSION
 fi
 rbenv global $RUBY_VERSION
 
-echo "Configuring Bundler for faster, parallel gem installation ..."
-number_of_cores=`sysctl -n hw.ncpu`
-bundle config --global jobs `expr $number_of_cores - 1`
+# echo "Configuring Bundler for faster, parallel gem installation ..."
+# number_of_cores=`sysctl -n hw.ncpu`
+# bundle config --global jobs `expr $number_of_cores - 1`
 
 # Set up vim Plug
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
