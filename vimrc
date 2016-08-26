@@ -209,9 +209,7 @@ let g:ctrlp_map = '<leader>p'
 let g:ctrlp_cmd = 'CtrlP'
 
 " vim-colorschemes
-colorscheme molokai
-let g:molokai_original = 0
-let g:rehash256 = 1
+colorscheme Tomorrow-Night
 
 " vim-vroom
 let g:vroom_use_vimux = 1
