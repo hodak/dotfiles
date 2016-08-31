@@ -139,6 +139,7 @@ set t_Co=256
 map! ,cl console.log();<esc>hi
 map! ,cg console.group('')<return>console.log()<return>console.groupEnd()<esc>kkhi
 map! ,ie Node.connect(:'pry@hodak'); require IEx; IEx.pry<esc>
+map! ,ii IO.inspect<space>
 
 if exists('+colorcolumn')
   set colorcolumn=80
