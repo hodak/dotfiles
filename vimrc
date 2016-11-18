@@ -1,4 +1,4 @@
-"<c-p> ** MINIMAL VIMRC **
+" ** MINIMAL VIMRC **
 set encoding=utf-8
 " nocompatible - break away from old vi compatibility
 set nocp
@@ -44,9 +44,6 @@ au FileType c,java,php,js setlocal comments-=:// comments+=f://
 " <C-C><C-V>
 source $VIMRUNTIME/mswin.vim
 
-" Pathogen plugin
-" execute pathogen#infect()
-
 " Change the mapleader from \ to ,
 let mapleader=","
 " ; instead of : - :w -> ;w. saves milliseconds on each operation
@@ -55,97 +52,39 @@ nnoremap ; :
 
 " Switch between last opened file
 map <leader><leader> <C-^>
-" Open NERDTree
-map <leader>N :NERDTree<CR>
-map <leader>n :NERDTreeFind<cr>
 
+" Disable backup and swap files
 set nobackup
 set noswapfile
 
-" always start gvim's window maximized
-au GUIEnter * simalt ~x
-
-" """ NEOBUNDLE
-" if has('vim_starting')
-"   set nocompatible               " Be iMproved
-
-"   " Required:
-"   set runtimepath+=~/.vim/bundle/neobundle.vim/
-" endif
-
-" " " Required:
-" call neobundle#begin(expand('~/.vim/bundle/'))
-
-" " Let NeoBundle manage NeoBundle
-" " Required:
-" NeoBundleFetch 'Shougo/neobundle.vim'
-" NeoBundle 'Shougo/vimproc', {
-"       \ 'build' : {
-"       \     'windows' : 'make -f make_mingw32.mak',
-"       \     'unix' : 'make -f make_unix.mak',
-"       \    },
-"       \ }
-
-" NeoBundle 'tpope/vim-rails'
-" NeoBundle 'tpope/vim-sleuth'
-" NeoBundle 'tpope/vim-haml'
-" NeoBundle 'digitaltoad/vim-jade'
-
-" " ,rt -> to strings
-" " ,rr -> to symbols
-" NeoBundle 'rorymckinley/vim-rubyhash'
-
-" " NeoBundle 'vim-scripts/IndexedSearch'
-" NeoBundle 'vim-scripts/gitignore'
-
-" NeoBundle
-
-" NeoBundle 'https://github.com/Valloric/YouCompleteMe.git' , {
-"       \ 'build' : {
-"       \ 'unix' : './install.sh --clang-completer --system-libclang'
-"       \ },
-"       \ }
-
-
-" NeoBundle 'godlygeek/tabular'
-
-
-" NeoBundle 'terryma/vim-expand-region'
-
-" " NeoBundle 'elixir-lang/vim-elixir'
-" " NeoBundle 'pearofducks/ansible-vim'
-
-" call neobundle#end()
-""" /NEOBUNDLE
-
-" testing
 set fileformat=unix
+
 " strip trailing whitespaces and keep new line at the end of file
 " https://gist.github.com/jandudulski/4451806
 if has("autocmd")
-   " remove trailing white spaces
   autocmd BufWritePre * :%s/\s\+$//e
 endif
+
 " fix tmux background, hopefully
 " http://stackoverflow.com/questions/14689925/vim-background-with-gnu-screen
 set t_ut=
 
-syntax on
 " 256 colors in terminal
 set t_Co=256
 
+" Open NERDTree
+map <leader>N :NERDTree<CR>
+map <leader>n :NERDTreeFind<cr>
+
 " http://newbiedoc.sourceforge.net/tutorials/vim/mapping-vim.html.en
 " map! ,cl console.log<space>
-map! ,cl console.log();<esc>hi
+map! ,cl console.log()<esc>i
 map! ,cg console.group('')<return>console.log()<return>console.groupEnd()<esc>kkhi
 map! ,ie Node.connect(:'pry@hodak'); require IEx; IEx.pry<esc>
+map! ,ip IO.puts<space>
 map! ,ii IO.inspect<space>
 
-if exists('+colorcolumn')
-  set colorcolumn=80
-else
-  au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
-endif
+set colorcolumn=80
 
 " " Put plugins and dictionaries in this dir (also on Windows)
 let vimDir = '$HOME/.vim'
@@ -163,7 +102,19 @@ endif
 " Tab2Space
 :command! -range=% -nargs=0 Tab2Space execute '<line1>,<line2>s#^\t\+#\=repeat(" ", len(submatch(0))*' . &ts . ')'
 
-" autocmd filetype crontab setlocal nobackup nowritebackup
+" vim was scrolling slowly
+set ttyfast
+set ttyscroll=3
+
+" reload vimrc after save
+augroup reload_vimrc " {
+  autocmd!
+  autocmd BufWritePost $MYVIMRC source $MYVIMRC
+augroup END " }
+
+" strange :( https://github.com/spf13/spf13-vim/issues/540#issuecomment-101488443
+" set shortmess=a
+" set cmdheight=2
 
 call plug#begin()
 Plug 'kien/ctrlp.vim'
@@ -173,31 +124,25 @@ Plug 'flazz/vim-colorschemes'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-rails'
 Plug 'scrooloose/nerdtree'
-Plug 'airblade/vim-rooter'
 Plug 'yunake/vimux' | Plug 'skalnik/vim-vroom'
-Plug 'rking/pry-de', {'rtp': 'vim/'}
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'scrooloose/syntastic'
-Plug 'keith/rspec.vim'
-Plug 'kchmck/vim-coffee-script'
-Plug 'othree/javascript-libraries-syntax.vim'
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
-Plug 'slim-template/vim-slim'
-Plug 'mtscout6/vim-cjsx'
-Plug 'othree/html5.vim'
+Plug 'digitaltoad/vim-pug'
 Plug 'posva/vim-vue'
-
-" ,rt -> to strings
-" ,rr -> to symbols
-" Plug 'rorymckinley/vim-rubyhash'
-
 Plug 'elixir-lang/vim-elixir'
+
+" Plug 'tpope/vim-surround'
+" Plug 'tpope/vim-rails'
+" Plug 'airblade/vim-rooter'
+" Plug 'rking/pry-de', {'rtp': 'vim/'}
+" Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+" Plug 'othree/javascript-libraries-syntax.vim'
+" Plug 'scrooloose/syntastic'
+" Plug 'keith/rspec.vim'
+" Plug 'kchmck/vim-coffee-script'
+" Plug 'pangloss/vim-javascript'
+" Plug 'othree/html5.vim'
 call plug#end()
 
 " ctrlp
@@ -208,6 +153,9 @@ let g:ctrlp_prompt_mappings = {
       \ }
 let g:ctrlp_map = '<leader>p'
 let g:ctrlp_cmd = 'CtrlP'
+
+" vim-commentary
+autocmd FileType vue setlocal commentstring=//\ %s
 
 " vim-colorschemes
 colorscheme Tomorrow-Night
@@ -229,18 +177,10 @@ let g:airline_left_sep=''
 let g:airline_right_sep=''
 let g:airline_section_z=''
 
+" javascript-libraries-syntax
+" let g:used_javascript_libs = 'vue'
+
 " syntastic
-let g:syntastic_check_on_open=0
-let g:syntastic_enable_signs=1
-
-let g:used_javascript_libs = 'angularjs'
-
-set ttyfast
-set ttyscroll=3
-
-augroup reload_vimrc " {
-  autocmd!
-  autocmd BufWritePost $MYVIMRC source $MYVIMRC
-augroup END " }
-
-au BufRead,BufNewFile *.vue set filetype=html
+" let g:syntastic_check_on_open=0
+" let g:syntastic_enable_signs=1
+" let g:syntastic_ignore_files = []
