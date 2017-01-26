@@ -1,6 +1,5 @@
 rubygems-bundler
 bundler
-git-up
 gem-open
 magic_encoding
 webistrano_cli

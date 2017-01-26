@@ -13,6 +13,7 @@
   dc = diff --cached
   amend = commit --amend
   aa = add --all :/
+  ap = add --all :/ -p
   ff = merge --ff-only
   cp = cherry-pick
   count = rev-list --count HEAD
@@ -24,6 +25,7 @@
   ra = !git r --all
   l = "!. ~/.githelpers && pretty_git_log"
   la = !git l --all
+  up = pull --rebase --autostash
 [core]
 	editor = vim
 	excludesfile = ~/.gitignore-global
