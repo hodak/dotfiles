@@ -53,6 +53,9 @@ nnoremap ; :
 " Switch between last opened file
 map <leader><leader> <C-^>
 
+" ,xml -> format xml file
+map <leader>xml :%!xmllint --format -<ENTER>
+
 " Disable backup and swap files
 set nobackup
 set noswapfile
