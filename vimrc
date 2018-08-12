@@ -45,6 +45,12 @@ au FileType c,java,php,js setlocal comments-=:// comments+=f://
 
 " <C-C><C-V>
 source $VIMRUNTIME/mswin.vim
+" behave mswin
+" noremap <C-V> <C-V>
+" vmap <C-x> :!pbcopy<CR>
+" vmap <C-c> :w !pbcopy<CR><CR>
+" vmap <C-c> "+y
+" set clipboard=unnamed
 
 " Change the mapleader from \ to ,
 let mapleader=","
