@@ -20,6 +20,12 @@ export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
 export PATH=/usr/local/sbin:$PATH
 export PATH="/usr/local/heroku/bin:$PATH"
 export PATH="$HOME/.node/bin:$PATH"
+export PATH="/usr/local/opt/postgresql@9.5/bin:$PATH"
+
+export PYTHONPATH=$PYTHONPATH:/usr/bin/
+
+export ANDROID_HOME=/Users/$USER/Library/Android/sdk
+export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 
 fpath=(/usr/local/share/zsh-completions $fpath)
 
@@ -27,7 +33,19 @@ eval "$(rbenv init -)"
 
 bindkey -e
 
+# export NVM_DIR="$HOME/.nvm"
+# . "$(brew --prefix nvm)/nvm.sh"
 export NVM_DIR="$HOME/.nvm"
-. "$(brew --prefix nvm)/nvm.sh"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
-test -s "$HOME/.kiex/scripts/kiex" && source "$HOME/.kiex/scripts/kiex"
+. $HOME/.asdf/asdf.sh
+. $HOME/.asdf/completions/asdf.bash
+
+export ERL_AFLAGS="-kernel shell_history enabled"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/hodak/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/hodak/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/hodak/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/hodak/google-cloud-sdk/completion.zsh.inc'; fi
