@@ -9,3 +9,12 @@
 .rbenv-vars
 .powder
 
+.iex.exs
+
+# asdf versioning
+.tool-versions
+.tool-versions-e
+
+# Recruitee
+
+dev-bootstrap.json
