@@ -97,7 +97,10 @@ map! ,ip IO.puts<space>
 map! ,ii IO.inspect<space>
 map ,iI O\|> IO.inspect<esc>
 
-set colorcolumn=80
+set colorcolumn=100
+
+" Allow saving of files as sudo when I forgot to start vim using sudo.
+cmap w!! w !sudo tee > /dev/null %
 
 " " Put plugins and dictionaries in this dir (also on Windows)
 let vimDir = '$HOME/.vim'
@@ -113,7 +116,7 @@ if has('persistent_undo')
 endif
 
 " Tab2Space
-:command! -range=% -nargs=0 Tab2Space execute '<line1>,<line2>s#^\t\+#\=repeat(" ", len(submatch(0))*' . &ts . ')'
+" :command! -range=% -nargs=0 Tab2Space execute '<line1>,<line2>s#^\t\+#\=repeat(" ", len(submatch(0))*' . &ts . ')'
 
 " vim was scrolling slowly
 set ttyfast
@@ -126,11 +129,12 @@ augroup reload_vimrc " {
 augroup END " }
 
 " strange :( https://github.com/spf13/spf13-vim/issues/540#issuecomment-101488443
-" set shortmess=a
-" set cmdheight=2
+set shortmess=a
+set cmdheight=2
 
 call plug#begin()
 Plug 'kien/ctrlp.vim'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 Plug 'rking/ag.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'flazz/vim-colorschemes'
@@ -139,23 +143,33 @@ Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/nerdtree'
 Plug 'yunake/vimux' | Plug 'skalnik/vim-vroom'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'digitaltoad/vim-pug'
+" Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
+" Plug 'digitaltoad/vim-pug'
 Plug 'posva/vim-vue'
 Plug 'elixir-lang/vim-elixir'
+" Plug 'huffman/vim-elixir'
+" Plug 'sheerun/vim-polyglot'
 
 " Plug 'tpope/vim-surround'
 " Plug 'tpope/vim-rails'
 " Plug 'airblade/vim-rooter'
-" Plug 'rking/pry-de', {'rtp': 'vim/'}
-" Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+Plug 'rking/pry-de', {'rtp': 'vim/'}
 " Plug 'othree/javascript-libraries-syntax.vim'
-" Plug 'scrooloose/syntastic'
+Plug 'scrooloose/syntastic'
 " Plug 'keith/rspec.vim'
 " Plug 'kchmck/vim-coffee-script'
 " Plug 'pangloss/vim-javascript'
 " Plug 'othree/html5.vim'
+Plug 'leafgarland/typescript-vim'
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+" Plug 'Quramy/tsuquyomi'
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install',
+  \ 'for': ['typescript', 'css', 'less', 'scss', 'json'] }
+" Plug 'maksimr/vim-jsbeautify' " , {
+"   \ 'do': 'git submodule --init --recursive' }
+Plug 'Chiel92/vim-autoformat'
 call plug#end()
 
 " ctrlp
@@ -171,7 +185,8 @@ let g:ctrlp_cmd = 'CtrlP'
 autocmd FileType vue setlocal commentstring=//\ %s
 
 " vim-colorschemes
-colorscheme Tomorrow-Night
+colorscheme Tomorrow-Night " dark
+" colorscheme github " light (outdoor)
 
 " vim-vroom
 let g:vroom_use_vimux = 1
@@ -183,6 +198,11 @@ else
   let g:vroom_spec_command = 'rspec --format=documentation'
 endif
 let g:vroom_mix_test_command = 'elixir --sname mixtest -S mix test --color'
+let g:vroom_map_keys = 0
+map <leader>e :w\|:VroomRunNearestTest<cr>
+map <leader>r :w\|:VroomRunTestFile<cr>
+
+" map <leader>t :w\|:!mix test --color %<cr>
 
 " vim-airline
 let g:airline_theme='powerlineish'
@@ -194,6 +214,45 @@ let g:airline_section_z=''
 " let g:used_javascript_libs = 'vue'
 
 " syntastic
-" let g:syntastic_check_on_open=0
-" let g:syntastic_enable_signs=1
-" let g:syntastic_ignore_files = []
+let g:syntastic_check_on_open=0
+let g:syntastic_enable_signs=1
+let g:syntastic_ignore_files = []
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 1
+let g:syntastic_aggregate_errors = 0
+
+let g:syntastic_typescript_checkers = ['tsuquyomi', 'tslint']
+let g:syntastic_html_checkers = []
+let g:syntastic_ruby_checkers = []
+
+" prettier
+let g:prettier#autoformat = 0
+autocmd BufWritePre *.ts,*.tsx,*.css,*.less,*.scss,*.graphql Prettier
+
+" let g:prettier#config#print_width = 100
+" let g:prettier#config#tab_width = 2
+" let g:prettier#config#use_tabs = 'false'
+" let g:prettier#config#semi = 'true'
+" let g:prettier#config#single_quote = 'true'
+" let g:prettier#config#trailing_comma = 'all'
+" let g:prettier#config#bracket_spacing = 'true'
+" let g:prettier#config#arrow_parens = 'avoid'
+
+" tsuquyomi
+let g:tsuquyomi_disable_quickfix = 1
+let g:tsuquyomi_disable_default_mappings = 1
+" let g:tsuquyomi_shortest_import_path = 1
+let g:tsuquyomi_single_quote_import = 1
+map <C-i> :TsuImport<CR>
+
+" vim-autoformat
+autocmd BufWritePre *.html Autoformat
+
+set exrc
