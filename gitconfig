@@ -26,6 +26,8 @@
   l = "!. ~/.githelpers && pretty_git_log"
   la = !git l --all
   up = pull --rebase --autostash
+  su = submodule update --recursive --remote
+  set-upstream = !git branch --set-upstream-to=origin/`git symbolic-ref --short HEAD`
 [core]
 	editor = vim
 	excludesfile = ~/.gitignore-global
