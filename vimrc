@@ -7,7 +7,9 @@ set bs=indent,eol,start
 " Turn off cursor blinking
 set gcr=n:blinkon0
 " enable language-dependent indenting.
-filetype plugin indent on
+" filetype plugin indent on
+filetype indent off
+set smartindent
 " line, relative numbers
 set number
 set relativenumber
