@@ -72,7 +72,8 @@ agents_install() {
 
 brew_install rbenv rbenv-default-gems ruby-build \
   imagemagick redis memcached mongodb mysql postgresql elasticsearch node \
-  rbenv-vars tmux cmake vim the_silver_searcher erlang nvm python3 wget
+  rbenv-vars tmux cmake vim the_silver_searcher erlang nvm python3 wget \
+  diff-so-fancy
 
 agents_install redis memcached mongodb mysql postgresql elasticsearch
 
