@@ -26,9 +26,6 @@ function fm {
   fi
 }
 
-# project chytreg/dotfiles my/dotfiles
-# project my/dotfiles
-
 function project {
 : ${1?"Usage: project project_dir"}
   mkdir -p ~/src
@@ -116,3 +113,28 @@ function color_my_prompt {
 }
 color_my_prompt
 
+function gem-info() {
+  curl https://rubygems.org/api/v1/gems/$1.json | python -m json.tool
+}
+
+# Recruitee
+
+function staging_api_console() {
+  kubectl exec -it $(kubectl get pods | grep api- | awk "{print \$1}" | head -n 1) /opt/app/bin/recruitee remote_console
+}
+
+function staging_api() {
+  kubectl exec -it $(kubectl get pods | grep api- | awk "{print \$1}" | head -n 1) /bin/bash
+}
+
+function staging_pg_console() {
+  kubectl exec -it $(kubectl get pods | grep payment-gateway- | awk "{print \$1}" | head -n 1) /opt/app/bin/pg remote_console
+}
+
+function staging_pg() {
+  kubectl exec -it $(kubectl get pods | grep payment-gateway- | awk "{print \$1}" | head -n 1) /bin/bash
+}
+
+function staging_legacy() {
+  kubectl exec -it $(kubectl get pods | grep legacy-web- | awk "{print \$1}" | head -n 1) /bin/bash
+}
