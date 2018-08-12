@@ -91,9 +91,11 @@ map <leader>n :NERDTreeFind<cr>
 " map! ,cl console.log<space>
 map! ,cl console.log()<esc>i
 map! ,cg console.group('')<return>console.log()<return>console.groupEnd()<esc>kkhi
-map! ,ie Node.connect(:'pry@hodak'); require IEx; IEx.pry<esc>
+" map! ,ie Node.connect(:'pry@hodak'); require IEx; IEx.pry<esc>
+map! ,ie require IEx; IEx.pry<esc>
 map! ,ip IO.puts<space>
 map! ,ii IO.inspect<space>
+map ,iI O\|> IO.inspect<esc>
 
 set colorcolumn=80
 
