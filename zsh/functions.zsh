@@ -113,24 +113,14 @@ function gem-info() {
   curl https://rubygems.org/api/v1/gems/$1.json | python -m json.tool
 }
 
-# Recruitee
-
-function staging_api_console() {
-  kubectl exec -it $(kubectl get pods | grep api- | awk "{print \$1}" | head -n 1) /opt/app/bin/recruitee remote_console
+function blanket-webfocus() {
+  BLANKET_ENDPOINT=http://localhost:4000 BLANKET_TOKEN=e0c2ef5b30444a9a1a6ef1535178fa4b mix test --cover $1
 }
 
-function staging_api() {
-  kubectl exec -it $(kubectl get pods | grep api- | awk "{print \$1}" | head -n 1) /bin/bash
+function blanket-tesla() {
+  BLANKET_ENDPOINT=http://localhost:4000 BLANKET_TOKEN=322c3132e19b443a1e1c90d7dc1de8e8 mix test --cover $1
 }
 
-function staging_pg_console() {
-  kubectl exec -it $(kubectl get pods | grep payment-gateway- | awk "{print \$1}" | head -n 1) /opt/app/bin/pg remote_console
-}
-
-function staging_pg() {
-  kubectl exec -it $(kubectl get pods | grep payment-gateway- | awk "{print \$1}" | head -n 1) /bin/bash
-}
-
-function staging_legacy() {
-  kubectl exec -it $(kubectl get pods | grep legacy-web- | awk "{print \$1}" | head -n 1) /bin/bash
+function tunnelme() {
+  lt --subdomain $(whoami) --port $1 --print-requests
 }
