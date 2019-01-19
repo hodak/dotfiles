@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+repo = `git remote show -n origin`[/github.com:(.+).git/, 1].strip
+branch = `git rev-parse --abbrev-ref HEAD`.strip
+url = "https://github.com/#{repo}/compare/#{branch}?expand=1"
+system "open #{url}"
