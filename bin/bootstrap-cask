@@ -46,17 +46,15 @@ run_app() {
 }
 
 brew_cask_install dropbox flux \
-  firefox google-chrome iterm2 sequel-pro \
-  virtualbox alfred bettertouchtool \
-  slack lastpass opera spotify toggldesktop vlc \
-  todoist forklift lastpass
+  firefox google-chrome opera iterm2 \
+  postico forklift disk-inventory-x postman overkill \
+  slack anylist rescuetime \
+  alfred bettertouchtool karabiner-elements \
+  spotify vlc air-video-server-hd qnapi calibre \
 
-# make cask apps searchable by alfred
-brew cask alfred link
-
-autostart_hidden Flux Dropbox 'Alfred 2'
+autostart_hidden Flux Dropbox 'Alfred 3' BetterTouchTool Karabiner-Elements
 
 echo "Run default applications"
-run_app Flux Dropbox 'Alfred 2'
+run_app Flux Dropbox 'Alfred 3' BetterTouchTool Karabiner-Elements
 
 exit 0

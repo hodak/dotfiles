@@ -39,19 +39,6 @@ brew update || true
 echo "Running brew doctor..."
 brew doctor || true
 
-if !(brew tap | grep caskroom/cask > /dev/null); then
-  echo "Tap caskroom/cask"
-  brew tap caskroom/cask
-fi
-
-if !(brew tap | grep caskroom/versions > /dev/null); then
-  echo "Tap caskroom/versions"
-  brew tap caskroom/versions
-fi
-
-echo "Upgrade brew-cask..."
-brew upgrade brew-cask || true
-
 brew_install() {
   for app; do
     if !(brew list | grep $app > /dev/null); then
@@ -70,30 +57,19 @@ agents_install() {
   done
 }
 
-brew_install rbenv rbenv-default-gems ruby-build \
-  imagemagick redis memcached mongodb mysql postgresql elasticsearch node \
-  rbenv-vars tmux cmake vim the_silver_searcher erlang nvm python3 wget \
-  diff-so-fancy
+# elasticsearch requirement
+brew cask install homebrew/cask-versions/java8
 
-agents_install redis memcached mongodb mysql postgresql elasticsearch
+brew_install ruby-build git-lfs \
+  imagemagick redis memcached postgresql elasticsearch node \
+  tmux cmake vim the_silver_searcher nvm python3 wget \
+  diff-so-fancy reattach-to-user-namespace docker rabbitmq imagemagick ghostscript \
+  asdf coreutils automake autoconf openssl libyaml readline libxslt libtool unixodbc # asdf things
 
-# setup ruby
-RUBY_VERSION="2.3.1"
-if !(rbenv versions | grep $RUBY_VERSION > /dev/null); then
-  echo "Installing: ruby $RUBY_VERSION"
-  rbenv install $RUBY_VERSION
-fi
-rbenv global $RUBY_VERSION
-
-echo "Configuring Bundler for faster, parallel gem installation ..."
-number_of_cores=`sysctl -n hw.ncpu`
-bundle config --global jobs `expr $number_of_cores - 1`
+agents_install redis memcached postgresql elasticsearch
 
 # Set up vim Plug
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
-# Install kiex
-curl -sSL https://raw.githubusercontent.com/taylor/kiex/master/install | bash -s
 
 exit 0
