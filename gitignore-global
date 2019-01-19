@@ -11,6 +11,9 @@
 
 .iex.exs
 
+*.coverdata
+cover/
+
 # asdf versioning
 .tool-versions
 .tool-versions-e
