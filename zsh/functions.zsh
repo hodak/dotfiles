@@ -97,10 +97,6 @@ function remove-backups() {
   ls -d ~/* | grep '.*bak' | xargs -I {} rm -rf {}
 }
 
-function fix-hipchat() {
-  curl -fsSL http://bitly.com/10wDsM7 | bash
-}
-
 function color_my_prompt {
   local __user_and_host="\[\033[01;32m\]\u@\h"
   local __cur_location="\[\033[01;34m\]\w"
