@@ -43,6 +43,8 @@ au FileType c,java,php,js setlocal comments-=:// comments+=f://
 " extended % matching for HTML, LaTeX, and many other languages
 :source $VIMRUNTIME/macros/matchit.vim
 
+set listchars+=space:␣
+
 " <C-C><C-V>
 source $VIMRUNTIME/mswin.vim
 " behave mswin
@@ -170,6 +172,8 @@ Plug 'prettier/vim-prettier', {
 " Plug 'maksimr/vim-jsbeautify' " , {
 "   \ 'do': 'git submodule --init --recursive' }
 Plug 'Chiel92/vim-autoformat'
+
+Plug 'mhinz/vim-mix-format'
 call plug#end()
 
 " ctrlp
@@ -253,6 +257,13 @@ let g:tsuquyomi_single_quote_import = 1
 map <C-i> :TsuImport<CR>
 
 " vim-autoformat
-autocmd BufWritePre *.html Autoformat
+" autocmd BufWritePre *.html Autoformat
+
+" nerdtree
+let NERDTreeShowHidden=1
+
+" mix format
+let g:mix_format_on_save = 1
+let g:mix_format_options = ''
 
 set exrc
