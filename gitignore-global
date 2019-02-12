@@ -18,6 +18,8 @@ cover/
 .tool-versions
 .tool-versions-e
 
+sys.config
+
 # Recruitee
 
 dev-bootstrap.json

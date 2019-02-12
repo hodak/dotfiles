@@ -124,3 +124,22 @@ function blanket-tesla() {
 function tunnelme() {
   lt --subdomain $(whoami) --port $1 --print-requests
 }
+
+function phx_sysconfig() {
+  echo "[{kernel, [
+  {sync_nodes_optional, ['n1@127.0.0.1', 'n2@127.0.0.1', 'n3@127.0.0.1', 'n4@127.0.0.1']},
+  {sync_nodes_timeout, 10000}
+]}]." > sys.config
+}
+
+function phx_cluster() {
+  local a="n$1@127.0.0.1"
+  echo $a
+  iex --name $a --erl "-config sys.config" -S mix phx.server
+}
+
+function mix_serve_cluster() {
+  local a="n$1@127.0.0.1"
+  echo $a
+  iex --name $a --erl "-config sys.config" -S mix serve
+}
