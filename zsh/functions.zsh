@@ -143,3 +143,7 @@ function mix_serve_cluster() {
   echo $a
   iex --name $a --erl "-config sys.config" -S mix serve
 }
+
+function hltcp() {
+  highlight -O rtf $1 | pbcopy
+}
