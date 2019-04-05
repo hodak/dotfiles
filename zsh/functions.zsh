@@ -122,7 +122,7 @@ function blanket-tesla() {
 }
 
 function tunnelme() {
-  lt --subdomain $(whoami) --port $1 --print-requests
+  ssh -R $(whoami):80:localhost:$1 serveo.net
 }
 
 function phx_sysconfig() {
