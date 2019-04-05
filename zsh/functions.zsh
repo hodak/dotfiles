@@ -127,7 +127,7 @@ function tunnelme() {
 
 function phx_sysconfig() {
   echo "[{kernel, [
-  {sync_nodes_optional, ['n1@127.0.0.1', 'n2@127.0.0.1', 'n3@127.0.0.1', 'n4@127.0.0.1']},
+  {sync_nodes_optional, ['n0@127.0.0.1', 'n1@127.0.0.1', 'n2@127.0.0.1', 'n3@127.0.0.1']},
   {sync_nodes_timeout, 10000}
 ]}]." > sys.config
 }
