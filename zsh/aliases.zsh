@@ -35,3 +35,5 @@ alias flushdns='dscacheutil -flushcache;sudo killall -HUP mDNSResponder;say flus
 alias priex="iex --sname pry"
 
 alias tree="tree -I 'node_modules'"
+
+alias dokku='bash $HOME/.dokku/contrib/dokku_client.sh --rm'
