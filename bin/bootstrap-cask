@@ -49,7 +49,7 @@ run_app() {
 brew_cask_install dropbox flux \
   firefox google-chrome \
   postico forklift disk-inventory-x postman overkill \
-  slack anylist spark\
+  slack anylist \
   alfred bettertouchtool karabiner-elements \
   spotify vlc air-video-server-hd qnapi calibre docker \
 
