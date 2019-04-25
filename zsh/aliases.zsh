@@ -24,7 +24,7 @@ alias bsp="./bin/rspec"
 alias st="sky run tail -f log/staging.log"
 alias dt="tail -F -n 0 log/development.log"
 
-alias notes="cd ~/notes; vim"
+alias notes="cd ~/Dropbox/REF/Notes; vim"
 
 # Phoenix
 alias pserver="iex -S mix phx.server"
