@@ -60,4 +60,10 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 
 ln -s -F ~/dotfiles/link-bins/git-pr /usr/local/bin/git-pr
 
+asdf plugin-add erlang
+asdf plugin-add elixir
+asdf plugin-add ruby
+asdf plugin-add nodejs
+asdf plugin-add java
+
 exit 0
