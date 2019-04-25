@@ -45,12 +45,13 @@ run_app() {
   done
 }
 
+# iterm2
 brew_cask_install dropbox flux \
-  firefox google-chrome opera iterm2 \
+  firefox google-chrome \
   postico forklift disk-inventory-x postman overkill \
-  slack anylist rescuetime \
+  slack anylist spark\
   alfred bettertouchtool karabiner-elements \
-  spotify vlc air-video-server-hd qnapi calibre \
+  spotify vlc air-video-server-hd qnapi calibre docker \
 
 autostart_hidden Flux Dropbox 'Alfred 3' BetterTouchTool Karabiner-Elements
 

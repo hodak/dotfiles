@@ -48,25 +48,10 @@ brew_install() {
   done
 }
 
-agents_install() {
-  for app; do
-    if !(launchctl list | grep $app > /dev/null); then
-      echo "Installing agent: $app"
-      agents $app install || true
-    fi
-  done
-}
-
-# elasticsearch requirement
-brew cask install homebrew/cask-versions/java8
-
 brew_install ruby-build git-lfs \
-  imagemagick redis memcached postgresql elasticsearch node \
-  tmux cmake vim the_silver_searcher nvm python3 wget \
-  diff-so-fancy reattach-to-user-namespace docker rabbitmq imagemagick ghostscript \
+  memcached tmux cmake vim the_silver_searcher python3 wget \
+  diff-so-fancy reattach-to-user-namespace docker imagemagick ghostscript \
   asdf coreutils automake autoconf openssl libyaml readline libxslt libtool unixodbc # asdf things
-
-agents_install redis memcached postgresql elasticsearch
 
 # Set up vim Plug
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \

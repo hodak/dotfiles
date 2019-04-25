@@ -4,3 +4,6 @@ ssh/id_rsa*
 ssh/known_hosts
 
 zsh/recruitee.zsh
+
+karabiner/*
+!karabiner/karabiner.json

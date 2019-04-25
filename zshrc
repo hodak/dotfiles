@@ -20,8 +20,6 @@ export PYTHONPATH=$PYTHONPATH:/usr/bin/
 
 fpath=(/usr/local/share/zsh-completions $fpath)
 
-eval "$(rbenv init -)"
-
 bindkey -e
 
 export NVM_DIR="$HOME/.nvm"
