@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# echo "+ submodules"
+echo "+ submodules"
 cd ~/dotfiles; git submodule update --init --recursive
 
 # run command below to update submodules
@@ -21,3 +21,5 @@ echo "+ backup current dotfiles"
 echo "+ symlink new dotfiles"
 symlink-dotfiles zshrc gemrc irbrc pryrc tmux.conf \
   gitconfig gitignore-global githelpers vimrc
+
+sudo ln -f ~/dotfiles/hosts /etc/hosts
