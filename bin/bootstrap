@@ -48,10 +48,11 @@ brew_install() {
   done
 }
 
-brew_install ruby-build git-lfs \
-  memcached tmux cmake vim the_silver_searcher python3 wget \
+brew_install git-lfs git-crypt \
+  memcached postgresql tmux cmake vim the_silver_searcher python3 wget \
   diff-so-fancy reattach-to-user-namespace docker imagemagick ghostscript \
-  asdf coreutils automake autoconf openssl libyaml readline libxslt libtool unixodbc # asdf things
+  asdf coreutils automake autoconf openssl libyaml readline libxslt libtool unixodbc gpg \ # asdf things
+  tree
 
 # Set up vim Plug
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
