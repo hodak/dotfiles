@@ -28,6 +28,7 @@
   up = pull --rebase --autostash
   su = submodule update --recursive --remote
   set-upstream = !git branch --set-upstream-to=origin/`git symbolic-ref --short HEAD`
+  permission-reset = !git diff -p -R --no-color | grep -E \"^(diff|(old|new) mode)\" --color=never | git apply
 [core]
 	editor = vim
 	excludesfile = ~/.gitignore-global
