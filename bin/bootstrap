@@ -66,4 +66,6 @@ asdf plugin-add ruby
 asdf plugin-add nodejs
 asdf plugin-add java
 
+pip3 install cryptography
+
 exit 0
