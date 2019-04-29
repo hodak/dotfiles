@@ -30,7 +30,7 @@ export NVM_DIR="$HOME/.nvm"
 export ERL_AFLAGS="-kernel shell_history enabled"
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/hodak/Desktop/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/hodak/Desktop/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '/usr/local/var/google-cloud-sdk/path.zsh.inc' ]; then . '/usr/local/var/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/hodak/Desktop/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/hodak/Desktop/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f '/usr/local/var/google-cloud-sdk/completion.zsh.inc' ]; then . '/usr/local/var/google-cloud-sdk/completion.zsh.inc'; fi
