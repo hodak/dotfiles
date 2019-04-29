@@ -25,7 +25,7 @@ bindkey -e
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
-source /usr/local/opt/asdf/asdf.sh
+. /usr/local/opt/asdf/asdf.sh
 
 export ERL_AFLAGS="-kernel shell_history enabled"
 
