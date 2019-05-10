@@ -1,0 +1,14 @@
+{
+  "editor.formatOnSave": true,
+  "editor.fontFamily": "Monaco",
+  "vim.leader": ",",
+  "vim.normalModeKeyBindings": [
+    {
+      "before": [";"],
+      "after": [":"]
+    }
+  ],
+"editor.cursorBlinking": "solid",
+"editor.tabSize": 2,
+"workbench.colorTheme": "Tomorrow Night"
+}
