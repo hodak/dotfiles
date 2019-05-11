@@ -1,6 +1,11 @@
 {
+  "explorer.confirmDelete": false,
   "editor.formatOnSave": true,
-  "editor.fontFamily": "Monaco",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "explorer.confirmDragAndDrop": false,
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   "vim.leader": ",",
   "vim.normalModeKeyBindings": [
     {
@@ -8,7 +13,9 @@
       "after": [":"]
     }
   ],
-"editor.cursorBlinking": "solid",
-"editor.tabSize": 2,
-"workbench.colorTheme": "Tomorrow Night"
+  "vim.overrideCopy": true,
+  "editor.cursorBlinking": "solid",
+  "editor.tabSize": 2,
+  "workbench.colorTheme": "Tomorrow Night",
+  "window.zoomLevel": 1
 }
