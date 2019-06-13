@@ -1,4 +1,4 @@
 #!/bin/bash
 
 # decompile.exs $@ | highlight --syntax erlang --out-format ansi
-decompile.exs $@
+~/dotfiles/link-bins/decompile.exs $@
