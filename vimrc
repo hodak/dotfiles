@@ -99,7 +99,7 @@ map! ,ip IO.puts<space>
 map! ,ii IO.inspect<space>
 map ,iI O\|> IO.inspect<esc>
 
-set colorcolumn=100
+set colorcolumn=98
 
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! w !sudo tee > /dev/null %
