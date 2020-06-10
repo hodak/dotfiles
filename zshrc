@@ -28,6 +28,8 @@ bindkey -e
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
+export NODE_OPTIONS=--max_old_space_size=8192
+
 . /usr/local/opt/asdf/asdf.sh
 
 export ERL_AFLAGS="-kernel shell_history enabled"
