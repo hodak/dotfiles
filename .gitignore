@@ -4,6 +4,7 @@ ssh/id_rsa*
 ssh/known_hosts
 
 zsh/recruitee.zsh
+zsh/ubots.zsh
 zsh/secret.zsh
 
 karabiner/*

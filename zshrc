@@ -7,6 +7,7 @@ source ~/dotfiles/zsh/prompt.zsh
 source ~/dotfiles/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/dotfiles/zsh-history-substring-search/zsh-history-substring-search.zsh
 source ~/dotfiles/zsh/recruitee.zsh
+source ~/dotfiles/zsh/ubots.zsh
 
 export TERM="xterm-256color"
 
