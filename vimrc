@@ -134,6 +134,9 @@ augroup END " }
 set shortmess=a
 set cmdheight=2
 
+" fix syntax highlighting https://github.com/vim/vim/issues/2790
+set redrawtime=10000
+
 call plug#begin()
 Plug 'kien/ctrlp.vim'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
@@ -147,33 +150,20 @@ Plug 'scrooloose/nerdtree'
 Plug 'yunake/vimux' | Plug 'skalnik/vim-vroom'
 " Plug 'vim-airline/vim-airline'
 " Plug 'vim-airline/vim-airline-themes'
-" Plug 'digitaltoad/vim-pug'
-Plug 'posva/vim-vue'
 Plug 'elixir-lang/vim-elixir'
-" Plug 'huffman/vim-elixir'
-" Plug 'sheerun/vim-polyglot'
+Plug 'sheerun/vim-polyglot'
 
 " Plug 'tpope/vim-surround'
-" Plug 'tpope/vim-rails'
-" Plug 'airblade/vim-rooter'
+Plug 'airblade/vim-rooter'
 Plug 'rking/pry-de', {'rtp': 'vim/'}
-" Plug 'othree/javascript-libraries-syntax.vim'
-Plug 'scrooloose/syntastic'
+" Plug 'scrooloose/syntastic'
 " Plug 'keith/rspec.vim'
-" Plug 'kchmck/vim-coffee-script'
-" Plug 'pangloss/vim-javascript'
-" Plug 'othree/html5.vim'
-Plug 'leafgarland/typescript-vim'
-Plug 'Shougo/vimproc.vim', {'do' : 'make'}
-" Plug 'Quramy/tsuquyomi'
-Plug 'prettier/vim-prettier', {
-  \ 'do': 'yarn install',
-  \ 'for': ['typescript', 'css', 'less', 'scss', 'json'] }
-" Plug 'maksimr/vim-jsbeautify' " , {
-"   \ 'do': 'git submodule --init --recursive' }
-Plug 'Chiel92/vim-autoformat'
-
+" Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+" Plug 'prettier/vim-prettier', {
+"   \ 'do': 'yarn install',
+"   \ 'for': ['typescript', 'css', 'less', 'scss', 'json'] }
 Plug 'mhinz/vim-mix-format'
+Plug 'slashmili/alchemist.vim'
 call plug#end()
 
 " ctrlp
@@ -184,6 +174,9 @@ let g:ctrlp_prompt_mappings = {
       \ }
 let g:ctrlp_map = '<leader>p'
 let g:ctrlp_cmd = 'CtrlP'
+
+" YouCompleteMe
+let g:ycm_min_num_of_chars_for_completion = 3
 
 " vim-commentary
 autocmd FileType vue setlocal commentstring=//\ %s
@@ -209,36 +202,33 @@ map <leader>r :w\|:VroomRunTestFile<cr>
 " map <leader>t :w\|:!mix test --color %<cr>
 
 " vim-airline
-let g:airline_theme='powerlineish'
-let g:airline_left_sep=''
-let g:airline_right_sep=''
-let g:airline_section_z=''
-
-" javascript-libraries-syntax
-" let g:used_javascript_libs = 'vue'
+" let g:airline_theme='powerlineish'
+" let g:airline_left_sep=''
+" let g:airline_right_sep=''
+" let g:airline_section_z=''
 
 " syntastic
-let g:syntastic_check_on_open=0
-let g:syntastic_enable_signs=1
-let g:syntastic_ignore_files = []
+" let g:syntastic_check_on_open=0
+" let g:syntastic_enable_signs=1
+" let g:syntastic_ignore_files = []
 
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 1
-let g:syntastic_aggregate_errors = 0
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 0
+" let g:syntastic_check_on_wq = 1
+" let g:syntastic_aggregate_errors = 0
 
-let g:syntastic_typescript_checkers = ['tsuquyomi', 'tslint']
-let g:syntastic_html_checkers = []
-let g:syntastic_ruby_checkers = []
+" let g:syntastic_typescript_checkers = ['tsuquyomi', 'tslint']
+" let g:syntastic_html_checkers = []
+" let g:syntastic_ruby_checkers = []
 
 " prettier
-let g:prettier#autoformat = 0
-autocmd BufWritePre *.ts,*.tsx,*.css,*.less,*.scss,*.graphql Prettier
+" let g:prettier#autoformat = 0
+" autocmd BufWritePre *.ts,*.tsx,*.css,*.less,*.scss,*.graphql Prettier
 
 " let g:prettier#config#print_width = 100
 " let g:prettier#config#tab_width = 2
@@ -248,16 +238,6 @@ autocmd BufWritePre *.ts,*.tsx,*.css,*.less,*.scss,*.graphql Prettier
 " let g:prettier#config#trailing_comma = 'all'
 " let g:prettier#config#bracket_spacing = 'true'
 " let g:prettier#config#arrow_parens = 'avoid'
-
-" tsuquyomi
-let g:tsuquyomi_disable_quickfix = 1
-let g:tsuquyomi_disable_default_mappings = 1
-" let g:tsuquyomi_shortest_import_path = 1
-let g:tsuquyomi_single_quote_import = 1
-map <C-i> :TsuImport<CR>
-
-" vim-autoformat
-" autocmd BufWritePre *.html Autoformat
 
 " nerdtree
 let NERDTreeShowHidden=1
