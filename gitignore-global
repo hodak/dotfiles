@@ -20,6 +20,9 @@ cover/
 
 sys.config
 
+.elixir_ls/
+.vscode/
+
 # Recruitee
 
 dev-bootstrap.json
