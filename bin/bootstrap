@@ -51,7 +51,7 @@ brew_install() {
 brew_install git-lfs git-crypt \
   memcached postgresql tmux cmake vim the_silver_searcher python3 wget \
   diff-so-fancy reattach-to-user-namespace docker imagemagick ghostscript \
-  asdf coreutils automake autoconf openssl libyaml readline libxslt libtool unixodbc gpg \ # asdf things
+  asdf coreutils automake autoconf openssl libyaml readline libxslt libtool unixodbc gpg wxmac \ # asdf things
   tree v8 ansible
 
 # Set up vim Plug
