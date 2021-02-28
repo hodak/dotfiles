@@ -150,11 +150,11 @@ Plug 'scrooloose/nerdtree'
 Plug 'yunake/vimux' | Plug 'skalnik/vim-vroom'
 " Plug 'vim-airline/vim-airline'
 " Plug 'vim-airline/vim-airline-themes'
-Plug 'elixir-lang/vim-elixir'
+" Plug 'elixir-lang/vim-elixir'
 Plug 'sheerun/vim-polyglot'
 
 " Plug 'tpope/vim-surround'
-Plug 'airblade/vim-rooter'
+" Plug 'airblade/vim-rooter'
 Plug 'rking/pry-de', {'rtp': 'vim/'}
 " Plug 'scrooloose/syntastic'
 " Plug 'keith/rspec.vim'
@@ -163,7 +163,7 @@ Plug 'rking/pry-de', {'rtp': 'vim/'}
 "   \ 'do': 'yarn install',
 "   \ 'for': ['typescript', 'css', 'less', 'scss', 'json'] }
 Plug 'mhinz/vim-mix-format'
-Plug 'slashmili/alchemist.vim'
+" Plug 'slashmili/alchemist.vim'
 call plug#end()
 
 " ctrlp
