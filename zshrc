@@ -30,7 +30,10 @@ export NVM_DIR="$HOME/.nvm"
 
 export NODE_OPTIONS=--max_old_space_size=8192
 
-. /usr/local/opt/asdf/asdf.sh
+# Can't install erlang without it
+# https://github.com/asdf-vm/asdf-erlang/issues/157
+export CFLAGS="-O2 -g -fno-stack-check -Wno-error=implicit-function-declaration"
+. $HOME/.asdf/asdf.sh
 
 export ERL_AFLAGS="-kernel shell_history enabled"
 
