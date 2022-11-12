@@ -162,8 +162,12 @@ Plug 'rking/pry-de', {'rtp': 'vim/'}
 " Plug 'prettier/vim-prettier', {
 "   \ 'do': 'yarn install',
 "   \ 'for': ['typescript', 'css', 'less', 'scss', 'json'] }
-Plug 'mhinz/vim-mix-format'
+" Plug 'mhinz/vim-mix-format'
 " Plug 'slashmili/alchemist.vim'
+Plug 'dense-analysis/ale'
+Plug 'tpope/vim-projectionist'
+Plug 'c-brenn/fuzzy-projectionist.vim'
+Plug 'andyl/vim-projectionist-elixir'
 call plug#end()
 
 " ctrlp
@@ -243,7 +247,32 @@ map <leader>r :w\|:VroomRunTestFile<cr>
 let NERDTreeShowHidden=1
 
 " mix format
-let g:mix_format_on_save = 1
-let g:mix_format_options = ''
+" let g:mix_format_on_save = 1
+" let g:mix_format_options = ""
+
+" elixir-ls & ale
+" let g:ale_sign_column_always = 1
+let g:ale_elixir_elixir_ls_release = expand("~/code/elixir-ls/release")
+let g:ale_linters = { 'elixir': ['elixir-ls'] }
+let g:ale_fixers = { 'elixir': ['mix_format'] }
+
+let g:ale_completion_enabled = 1
+let g:ale_sign_error = '✘'
+let g:ale_sign_warning = '⚠'
+let g:ale_lint_on_enter = 0
+let g:ale_lint_on_text_changed = 'never'
+highlight ALEErrorSign ctermbg=NONE ctermfg=red
+highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
+let g:ale_linters_explicit = 1
+let g:ale_lint_on_save = 1
+let g:ale_fix_on_save = 1
+
+nnoremap <leader>f :ALEFix<cr>
+"noremap <Leader>ad :ALEGoToDefinition<CR>
+"noremap <Leader>ar :ALEFindReferences<CR>
+
+""Move between linting errors
+"nnoremap ]r :ALENextWrap<CR>
+"nnoremap [r :ALEPreviousWrap<CR>
 
 set exrc
