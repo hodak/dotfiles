@@ -12,10 +12,9 @@ source ~/dotfiles/zsh/ubots.zsh
 export TERM="xterm-256color"
 
 # == PATH ==
-export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH=/usr/local/bin:$PATH
 export PATH=/usr/local/sbin:$PATH
-export PATH="/usr/local/opt/postgresql@9.5/bin:$PATH"
+export PATH=/opt/homebrew/bin:$PATH
 
 export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 
@@ -32,16 +31,34 @@ export NODE_OPTIONS=--max_old_space_size=8192
 
 # Can't install erlang without it
 # https://github.com/asdf-vm/asdf-erlang/issues/157
-export CFLAGS="-O2 -g -fno-stack-check -Wno-error=implicit-function-declaration"
+# export CFLAGS="-O2 -g -fno-stack-check -Wno-error=implicit-function-declaration"
+
 . $HOME/.asdf/asdf.sh
 
 export ERL_AFLAGS="-kernel shell_history enabled"
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/usr/local/var/google-cloud-sdk/path.zsh.inc' ]; then . '/usr/local/var/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/usr/local/var/google-cloud-sdk/completion.zsh.inc' ]; then . '/usr/local/var/google-cloud-sdk/completion.zsh.inc'; fi
+export KERL_CONFIGURE_OPTIONS="
+      --disable-debug \
+      --disable-silent-rules \
+      --enable-dynamic-ssl-lib \
+      --disable-hipe \
+      --enable-shared-zlib \
+      --enable-smp-support \
+      --enable-threads \
+      --enable-wx \
+      --with-ssl=$(brew --prefix openssl@1.1) \
+      --without-javac
+      --enable-darwin-64bit \
+      --enable-kernel-poll \
+      --with-dynamic-trace=dtrace \
+     "
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/adam/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/adam/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/adam/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/adam/google-cloud-sdk/completion.zsh.inc'; fi
+
+plugins=(asdf)
