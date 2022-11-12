@@ -51,12 +51,12 @@ brew_install() {
 brew_install git-lfs git-crypt \
   memcached postgresql tmux cmake vim the_silver_searcher python3 wget \
   diff-so-fancy reattach-to-user-namespace docker imagemagick ghostscript \
-  asdf coreutils automake autoconf openssl libyaml readline libxslt libtool unixodbc gpg wxmac \ # asdf things
-  tree v8 ansible
+  coreutils automake autoconf libxslt fop openssl libyaml readline libxslt libtool unixodbc gpg wxmac \
+  tree v8 ansible zsh-history-substring-search
 
 # Set up vim Plug
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 ln -s -F ~/dotfiles/link-bins/git-pr /usr/local/bin/git-pr
 ln -s -F ~/dotfiles/link-bins/erldec /usr/local/bin/erldec
