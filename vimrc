@@ -198,7 +198,7 @@ if filereadable("bin/rspec")
 else
   let g:vroom_spec_command = 'rspec --format=documentation'
 endif
-let g:vroom_mix_test_command = 'elixir --sname mixtest -S mix test --color'
+let g:vroom_mix_test_command = 'iex --sname mixtest -S mix test --color'
 let g:vroom_map_keys = 0
 map <leader>e :w\|:VroomRunNearestTest<cr>
 map <leader>r :w\|:VroomRunTestFile<cr>

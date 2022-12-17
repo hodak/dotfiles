@@ -27,7 +27,7 @@ alias dt="tail -F -n 0 log/development.log"
 alias notes="cd ~/Dropbox/REF/Notes; vim"
 
 # Phoenix
-alias pserver="iex -S mix phx.server"
+alias pserver="iex --no-pry -S mix phx.server"
 alias simpleserver="open http://localhost:8000; python -m SimpleHTTPServer"
 
 alias flushdns='dscacheutil -flushcache;sudo killall -HUP mDNSResponder;say flushed'
