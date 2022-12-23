@@ -14,10 +14,6 @@
 *.coverdata
 cover/
 
-# asdf versioning
-.tool-versions
-.tool-versions-e
-
 sys.config
 
 .elixir_ls/
