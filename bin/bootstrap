@@ -49,7 +49,7 @@ brew_install() {
 }
 
 brew_install git-lfs git-crypt \
-  memcached postgresql tmux cmake vim the_silver_searcher python3 wget \
+  memcached postgresql tmux utf8proc cmake vim the_silver_searcher python3 wget \
   diff-so-fancy reattach-to-user-namespace docker imagemagick ghostscript \
   coreutils automake autoconf libxslt fop openssl libyaml readline libxslt libtool unixodbc gpg wxmac \
   tree v8 ansible zsh-history-substring-search
