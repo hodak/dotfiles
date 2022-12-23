@@ -22,4 +22,7 @@ echo "+ symlink new dotfiles"
 symlink-dotfiles zshrc gemrc irbrc pryrc tmux.conf \
   gitconfig gitignore-global githelpers vimrc
 
+mkdir -p ~/.config/nvim
+ln -sf ~/dotfiles/init.lua ~/.config/nvim/init.lua
+
 sudo ln -f ~/dotfiles/hosts /etc/hosts

@@ -18,6 +18,7 @@ alias rt='echo "restarting"; touch tmp/restart.txt; spring stop'
 alias grep="grep --color"
 alias vi="vim" # lame, i know
 alias vvim="vim -u NONE" # vanilla vim
+alias nv="nvim"
 alias c="clear"
 alias rspec="clear; bundle exec rspec --color --format documentation"
 alias bsp="./bin/rspec"
