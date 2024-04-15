@@ -22,6 +22,7 @@ export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 export PYTHONPATH=$PYTHONPATH:/usr/bin/
 
 fpath=(/usr/local/share/zsh-completions $fpath)
+fpath=(~/dotfiles/ohmyzsh/plugins/gitfast $fpath)
 
 bindkey -e
 
