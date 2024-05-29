@@ -54,16 +54,11 @@ brew_install git-lfs git-crypt \
   coreutils automake autoconf libxslt fop openssl libyaml readline libxslt libtool unixodbc gpg wxmac \
   tree v8 ansible zsh-history-substring-search
 
-# Set up vim Plug
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
 ln -s -F ~/dotfiles/link-bins/git-pr /usr/local/bin/git-pr
 ln -s -F ~/dotfiles/link-bins/erldec /usr/local/bin/erldec
 
 asdf plugin-add erlang
 asdf plugin-add elixir
-asdf plugin-add ruby
 asdf plugin-add nodejs
 asdf plugin-add java
 
