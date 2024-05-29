@@ -1,3 +1,6 @@
+export LC_CTYPE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
 # == source-dependency ==
 source ~/dotfiles/zsh/history.zsh
 source ~/dotfiles/zsh/variables.zsh
