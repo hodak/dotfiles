@@ -19,6 +19,8 @@ sys.config
 .elixir_ls/
 .vscode/
 
+.projections.json
+
 # Recruitee
 
 dev-bootstrap.json
