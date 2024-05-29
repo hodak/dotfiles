@@ -42,28 +42,17 @@ export NODE_OPTIONS=--max_old_space_size=8192
 
 export ERL_AFLAGS="-kernel shell_history enabled"
 export KERL_CONFIGURE_OPTIONS="
-      --disable-debug \
-      --disable-silent-rules \
-      --enable-dynamic-ssl-lib \
-      --disable-hipe \
-      --enable-shared-zlib \
-      --enable-smp-support \
-      --enable-threads \
-      --enable-wx \
+      --disable-jit \
       --with-ssl=$(brew --prefix openssl@1.1) \
-      --without-javac
-      --enable-darwin-64bit \
-      --enable-kernel-poll \
-      --with-dynamic-trace=dtrace \
      "
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
+
+plugins=(asdf)
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/adam/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/adam/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/adam/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/adam/google-cloud-sdk/completion.zsh.inc'; fi
-
-plugins=(asdf)
