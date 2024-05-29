@@ -1,6 +1,6 @@
 [user]
   email = kaczor555@gmail.com
-  name = hodak
+  name = Adam Hodowany
 [color]
   ui = auto
 [alias]
@@ -31,7 +31,7 @@
   permission-reset = !git diff -p -R --no-color | grep -E \"^(diff|(old|new) mode)\" --color=never | git apply
   pushf = push --force-with-lease
 [core]
-	editor = vim
+	editor = nvim
 	excludesfile = ~/.gitignore-global
 [branch]
 	autosetuprebase = always
@@ -51,3 +51,5 @@
   insteadOf = https://github.com/
 [http]
   postBuffer = 157286400
+[init]
+  defaultBranch = main
