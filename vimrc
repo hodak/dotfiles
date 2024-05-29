@@ -186,8 +186,8 @@ let g:ycm_min_num_of_chars_for_completion = 3
 autocmd FileType vue setlocal commentstring=//\ %s
 
 " vim-colorschemes
-colorscheme Tomorrow-Night " dark
-" colorscheme github " light (outdoor)
+" colorscheme Tomorrow-Night " dark
+colorscheme github " light (outdoor)
 
 " vim-vroom
 let g:vroom_use_vimux = 1
@@ -198,7 +198,7 @@ if filereadable("bin/rspec")
 else
   let g:vroom_spec_command = 'rspec --format=documentation'
 endif
-let g:vroom_mix_test_command = 'iex --sname mixtest -S mix test --color'
+let g:vroom_mix_test_command = 'elixir --sname mixtest -S mix test --color'
 let g:vroom_map_keys = 0
 map <leader>e :w\|:VroomRunNearestTest<cr>
 map <leader>r :w\|:VroomRunTestFile<cr>
@@ -256,16 +256,19 @@ let g:ale_elixir_elixir_ls_release = expand("~/code/elixir-ls/release")
 let g:ale_linters = { 'elixir': ['elixir-ls'] }
 let g:ale_fixers = { 'elixir': ['mix_format'] }
 
-let g:ale_completion_enabled = 1
+" let g:ale_completion_enabled = 1
 let g:ale_sign_error = '✘'
 let g:ale_sign_warning = '⚠'
-let g:ale_lint_on_enter = 0
-let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_enter = 1
+" let g:ale_lint_on_text_changed = 'never'
+highlight ALEError ctermbg=168 ctermfg=black
 highlight ALEErrorSign ctermbg=NONE ctermfg=red
+highlight ALEWarning ctermbg=white ctermfg=black
 highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
-let g:ale_linters_explicit = 1
+" let g:ale_linters_explicit = 1
 let g:ale_lint_on_save = 1
 let g:ale_fix_on_save = 1
+let g:ale_hover_cursor = 0
 
 nnoremap <leader>f :ALEFix<cr>
 "noremap <Leader>ad :ALEGoToDefinition<CR>
