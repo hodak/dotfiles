@@ -144,10 +144,11 @@ require('packer').startup(function(use)
   end, { desc = "Super Tab" })
 
   -- language server, completion
-  -- tail -f ~/.local/state/nvim/lsp.log
-  use('williamboman/mason.nvim')
-  use('williamboman/mason-lspconfig.nvim')
-  use('neovim/nvim-lspconfig')
+  use({'elixir-tools/elixir-tools.nvim',
+    tag = 'stable',
+    requires = { 'nvim-lua/plenary.nvim' }
+  })
+
   use('hrsh7th/nvim-cmp')
   use('hrsh7th/cmp-nvim-lsp')
   use('hrsh7th/cmp-buffer')
@@ -202,6 +203,7 @@ require('nvim-tmux-navigation').setup({
   }
 })
 
+-- NERDTree
 vim.api.nvim_set_keymap('n', '<leader>n', ':NERDTreeFind<enter>', { noremap = true })
 
 -- vim-colorschemes
@@ -250,76 +252,25 @@ vim.cmd [[
   nnoremap <silent> <C-Space> <Cmd>NvimTmuxNavigateNext<CR>
 ]]
 
--- nvim-lspconfig
--- TIP: check your logs and the output of :LspInfo.
--- Add the following to your init.vim to enable logging:
--- vim.lsp.set_log_level("debug")
-local on_attach = function(client, bufnr)
-  local opts = { noremap=true, silent=false }
-  -- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  -- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  -- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  -- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  -- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-  -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>cr', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>cf', '<cmd>lua vim.lsp.buf.format({ async = false })<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>cd', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
-  -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-  -- vim.api.nvim_buf_set_keymap(bufnr, 'n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>dgr', '<cmd>lua vim.diagnostic.reset()<CR>', opts)
-
-  vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-    vim.lsp.diagnostic.on_publish_diagnostics, {
-      -- disable virtual text
-      virtual_text = false,
-
-      -- show signs
-      signs = true,
-
-      -- delay update diagnostics
-      update_in_insert = false,
+-- elixir-tools
+require('elixir').setup({
+  elixirls = {
+    enable = true,
+    -- tail -f ~/.local/state/nvim/lsp.log
+    cmd = '/Users/adam/elixir-ls/language_server.sh',
+  },
+  nextls = {
+    enable = false,
+    init_options = {
+      experimental = {
+        completions = { enable = true }
+      }
     }
-  )
-end
-
-vim.api.nvim_create_autocmd('BufWritePre', { pattern = '*.ex,*.exs', command = 'lua vim.lsp.buf.format({ async = false })' })
--- https://github.com/elixir-editors/vim-elixir/issues/562#issuecomment-1092331491
--- vim.cmd [[
---   au BufRead,BufNewFile *.ex,*.exs set filetype=elixir
---   au BufRead,BufNewFile *.eex,*.heex,*.leex,*.sface,*.lexs set filetype=eelixir
---   au BufRead,BufNewFile mix.lock set filetype=elixir
--- ]]
-
-require('mason').setup()
-local lspconfig = require("lspconfig")
--- lspconfig.elixirls.setup {
---   root_dir = function(fname)
---     return lspconfig.util.root_pattern("mix.exs", ".git")(fname) or vim.loop.os_homedir()
---   end,
---   filetypes = {"elixir", "eelixir", "heex", "surface"},
---   -- https://github.com/elixir-lsp/elixir-ls#building-and-running
---   -- cmd = { "/Users/adam/elixir-ls/_build/language_server.sh" },
---   -- cmd = { "/Users/adam/lexical/_build/dev/package/lexical/bin/start_lexical.sh" },
---   on_attach = on_attach,
---   capabilities = require('cmp_nvim_lsp').default_capabilities(),
-  
--- }
-lspconfig.nextls.setup({
-  cmd = {"nextls", "--stdio"},
-  init_options = {
-    extensions = {
-      credo = { enable = true }
-    },
-    experimental = {
-      completions = { enable = true }
-    }
-  }
+  },
+  credo = { enable = true },
 })
-lspconfig.tsserver.setup {
-  capabilities = require('cmp_nvim_lsp').default_capabilities(),
-}
+vim.api.nvim_create_autocmd('BufWritePre', { pattern = '*.ex,*.exs', command = 'lua vim.lsp.buf.format({ async = false })' })
+vim.api.nvim_set_keymap('n', '<leader>f', '<cmd> lua vim.lsp.buf.format()<CR>', { noremap = true })
 -- cmp, vsnip (complete, snippets)
 local cmp = require('cmp')
 cmp.setup({
