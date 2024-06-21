@@ -17,6 +17,7 @@ cover/
 sys.config
 
 .elixir_ls/
+.elixir-tools/
 .vscode/
 
 .projections.json
